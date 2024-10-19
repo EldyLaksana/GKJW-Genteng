@@ -40,4 +40,11 @@ class FrontendController extends Controller
             'judul' => 'Kabar Jemaat'
         ]);
     }
+
+    public function sejarah()
+    {
+        return view('frontend.sejarah', [
+            'judul' => 'Sejarah',
+        ]);
+    }
 }

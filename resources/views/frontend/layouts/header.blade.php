@@ -14,7 +14,7 @@
                 <li class="dropdown"><a href="#"><span>Profil</span> <i
                             class="bi bi-chevron-down toggle-dropdown"></i></a>
                     <ul>
-                        <li><a href="#">Sejarah</a></li>
+                        <li><a href="/sejarah" class="{{ $judul === 'Sejarah' ? 'active' : '' }}">Sejarah</a></li>
                         <li><a href="#">Profil Jemaat</a></li>
                         <li><a href="#">Profil Pendeta</a></li>
                         <li><a href="#">Kemajelisan</a></li>
