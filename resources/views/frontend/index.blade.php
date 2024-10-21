@@ -66,10 +66,22 @@
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Kegiatan</th>
+                                    <th scope="col">Hari</th>
                                     <th scope="col">Jam</th>
-                                    <th scope="col">Lokasi</th>
+                                    <th scope="col">Tempat</th>
                                 </tr>
                             </thead>
+                            <tbody>
+                                @foreach ($jadwal as $item)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->kegiatan }}</td>
+                                        <td>{{ $item->hari }}</td>
+                                        <td>{{ $item->jam }}</td>
+                                        <td>{{ $item->tempat }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
                         </table>
                     </div>
                 </div>

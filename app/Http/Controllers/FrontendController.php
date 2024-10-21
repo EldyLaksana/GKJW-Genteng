@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JadwalIbadah;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
     public function index()
     {
+        $jadwalIbadah = JadwalIbadah::all();
         return view('frontend.index', [
             'judul' => 'Beranda',
+            'jadwal' => $jadwalIbadah,
         ]);
     }
 

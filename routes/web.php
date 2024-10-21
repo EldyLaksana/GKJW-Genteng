@@ -3,6 +3,8 @@
 use App\Http\Controllers\BackendController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\JadwalIbadahController;
+use App\Http\Controllers\WartaJemaatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +38,7 @@ Route::get('/sejarah', [FrontendController::class, 'sejarah']);
 // Backend
 
 Route::get('/dashboard', [BackendController::class, 'index']);
+
+Route::resource('/jadwal-ibadah', JadwalIbadahController::class);
+
+Route::resource('/warta-jemaat', WartaJemaatController::class);

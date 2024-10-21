@@ -11,6 +11,15 @@
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="#">
                         <span class="material-symbols-outlined">
+                            account_circle
+                        </span>
+                        {{-- {{ Auth::user()->name }} --}}
+                        Admin
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="#">
+                        <span class="material-symbols-outlined">
                             today
                         </span>
                         {{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}
@@ -28,11 +37,20 @@
                 <hr class="my-3">
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
-                        href="/pemasukkan/create">
+                        href="/jadwal-ibadah">
                         <span class="material-symbols-outlined">
-                            add_shopping_cart
+                            event_note
                         </span>
-                        Transaksi
+                        Jadwal Ibadah
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
+                        href="/warta-jemaat/create">
+                        <span class="material-symbols-outlined">
+                            note_alt
+                        </span>
+                        Warta Jemaat
                     </a>
                 </li>
 
