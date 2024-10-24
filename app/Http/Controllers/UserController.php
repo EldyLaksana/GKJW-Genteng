@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\WartaJemaat;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Mews\Purifier\Facades\Purifier;
 
-class WartaJemaatController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('backend.user.index');
     }
 
     /**
@@ -21,7 +20,7 @@ class WartaJemaatController extends Controller
      */
     public function create()
     {
-        return view('backend.wartaJemaat.create');
+        return view('backend.user.create');
     }
 
     /**
@@ -31,17 +30,22 @@ class WartaJemaatController extends Controller
     {
         // return $request;
         $validateData = $request->validate([
-            'embed' => 'required',
+            'nama' => 'required',
+            'username' => 'required|unique:users,username',
+            'password' => 'required',
         ]);
 
-        WartaJemaat::create($validateData);
-        return back()->with('success', 'Warta jemaat berhasil ditambahkan');
+        $validateData['password'] = bcrypt($validateData['password']);
+        $validateData['isAdmin'] = '0';
+        // return $validateData;
+        User::create($validateData);
+        return redirect()->route('user.index')->with('success', 'User berhasil ditambahkan');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(WartaJemaat $wartaJemaat)
+    public function show(string $id)
     {
         //
     }
@@ -49,7 +53,7 @@ class WartaJemaatController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(WartaJemaat $wartaJemaat)
+    public function edit(string $id)
     {
         //
     }
@@ -57,7 +61,7 @@ class WartaJemaatController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, WartaJemaat $wartaJemaat)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -65,7 +69,7 @@ class WartaJemaatController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(WartaJemaat $wartaJemaat)
+    public function destroy(string $id)
     {
         //
     }

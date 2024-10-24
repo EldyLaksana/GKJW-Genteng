@@ -34,10 +34,19 @@
                         Dashboard
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
+                        href="/dashboard/user">
+                        <span class="material-symbols-outlined">
+                            person_add
+                        </span>
+                        User
+                    </a>
+                </li>
                 <hr class="my-3">
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
-                        href="/jadwal-ibadah">
+                        href="/dashboard/jadwal-ibadah">
                         <span class="material-symbols-outlined">
                             event_note
                         </span>
@@ -46,11 +55,39 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
-                        href="/warta-jemaat/create">
+                        href="/dashboard/warta-jemaat/create">
                         <span class="material-symbols-outlined">
                             note_alt
                         </span>
                         Warta Jemaat
+                    </a>
+                </li>
+                <hr class="my-3">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
+                        href="/dashboard/renungan">
+                        <span class="material-symbols-outlined">
+                            docs
+                        </span>
+                        Renungan
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
+                        href="/dashboard/kabar-jemaat">
+                        <span class="material-symbols-outlined">
+                            article
+                        </span>
+                        Kabar Jemaat
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
+                        href="/dashboard/kategori">
+                        <span class="material-symbols-outlined">
+                            category
+                        </span>
+                        Kategori
                     </a>
                 </li>
 

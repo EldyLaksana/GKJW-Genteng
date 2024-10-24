@@ -4,7 +4,11 @@ use App\Http\Controllers\BackendController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\JadwalIbadahController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WartaJemaatController;
+use App\Models\KabarJemaat;
+use App\Models\Renungan;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +43,16 @@ Route::get('/sejarah', [FrontendController::class, 'sejarah']);
 
 Route::get('/dashboard', [BackendController::class, 'index']);
 
-Route::resource('/jadwal-ibadah', JadwalIbadahController::class);
+Route::resource('/dashboard/jadwal-ibadah', JadwalIbadahController::class);
 
-Route::resource('/warta-jemaat', WartaJemaatController::class);
+Route::resource('/dashboard/warta-jemaat', WartaJemaatController::class);
+
+Route::resource('/dashboard/renungan', Renungan::class);
+
+Route::resource('/dashboard/kabar-jemaat', KabarJemaat::class);
+
+Route::resource('/dashboard/kategori', KategoriController::class);
+
+// Route::get('/dashboard/kategori/create/checkSlug', [KategoriController::class, 'checkSlug']);
+
+Route::resource('/dashboard/user', UserController::class);

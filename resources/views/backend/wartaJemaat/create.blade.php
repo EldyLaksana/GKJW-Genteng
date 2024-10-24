@@ -5,13 +5,20 @@
         <h1 class="h2">Masukan Warta Jemaat</h1>
     </div>
 
+    @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <section class="section">
         <div class="card mb-3">
             <div class="card-header d-grid gap-2 d-lg-flex justify-content-lg-end">
                 <a href="/dashboard" type="button" class="btn btn-success"><i class="fa-solid fa-arrow-left"></i>
                     Kembali</a>
             </div>
-            <form action="/warta-jemaat" method="post">
+            <form action="/dashboard/warta-jemaat" method="post">
                 @csrf
                 <div class="card-body">
                     <div class="mb-3 col-lg-6">
@@ -26,7 +33,7 @@
                     </div>
                 </div>
                 <div class="card-footer d-grid d-lg-flex justify-content-lg-end">
-                    <button type="submit" class="btn btn-success"><i class="fa-solid fa-shop"></i> Tambah</button>
+                    <button type="submit" class="btn btn-success"><i class="fa-solid fa-circle-plus"></i> Tambah</button>
                 </div>
             </form>
         </div>

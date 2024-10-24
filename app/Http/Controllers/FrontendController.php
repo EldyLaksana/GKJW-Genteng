@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\JadwalIbadah;
+use App\Models\WartaJemaat;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -18,8 +19,12 @@ class FrontendController extends Controller
 
     public function warta()
     {
+        $warta = WartaJemaat::latest('id')->first();
+
+        // return $warta;
         return view('frontend.warta', [
             'judul' => 'Warta Jemaat',
+            'warta' => $warta,
         ]);
     }
 

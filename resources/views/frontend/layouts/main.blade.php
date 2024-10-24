@@ -4,9 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
+    <title>GKJW Genteng</title>
+    <meta name="description"
+        content="GKJW Jemaat Genteng adalah komunitas Kristen yang penuh kasih, berkomitmen untuk melayani Tuhan dan sesama melalui ibadah, pelayanan, dan pengajaran Alkitab. Bergabunglah dengan kami dalam pelayanan dan kegiatan rohani.">
+    <meta name="keywords"
+        content="gereja, pelayanan gereja, ibadah, komunitas Kristen, pengajaran Alkitab, kebaktian, doa bersama, pelayanan rohani">
 
     {{-- Favicons --}}
 

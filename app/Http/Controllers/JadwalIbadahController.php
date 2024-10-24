@@ -56,7 +56,10 @@ class JadwalIbadahController extends Controller
      */
     public function edit(JadwalIbadah $jadwalIbadah)
     {
-        //
+        // return $jadwalIbadah;
+        return view('backend.jadwalIbadah.edit', [
+            'jadwal' => $jadwalIbadah,
+        ]);
     }
 
     /**
@@ -64,7 +67,15 @@ class JadwalIbadahController extends Controller
      */
     public function update(Request $request, JadwalIbadah $jadwalIbadah)
     {
-        //
+        $validateData = $request->validate([
+            'kegiatan' => 'required',
+            'hari' => 'required',
+            'jam' => 'required',
+            'tempat' => 'required',
+        ]);
+
+        JadwalIbadah::where('id', $jadwalIbadah->id)->update($validateData);
+        return redirect()->route('jadwal-ibadah.index')->with('success', 'Jadwal kegiatan berhasil diubah');
     }
 
     /**

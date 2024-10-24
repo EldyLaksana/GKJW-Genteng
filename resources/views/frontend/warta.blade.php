@@ -22,10 +22,11 @@
                     <div class="col-md-10 col-lg-8 mb-4" data-aos="fade-up">
                         <div class="text-center">
                             <h2 class="mb-3">Warta Jemaat</h2>
-                            <div class="ratio ratio-16x9">
-                                <iframe src="https://drive.google.com/file/d/15NgBTErXqdvmL3jqV4vIpVZV8ZSBKvbD/preview"
-                                    allow="autoplay"></iframe>
-                            </div>
+                            @if (!empty($warta->embed))
+                                <div class="ratio ratio-16x9">
+                                    {!! $warta->embed !!}
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

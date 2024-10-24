@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Jadwal Ibadah</h1>
+        <h1 class="h2">User</h1>
     </div>
 
     @if (session()->has('success'))
@@ -15,35 +15,31 @@
     <section class="section">
         <div class="card mb-3">
             <div class="card-header d-grid gap-2 d-lg-flex justify-content-lg-end">
-                <a href="/dashboard/jadwal-ibadah/create" type="button" class="btn btn-success"><i
+                <a href="/dashboard/user/create" type="button" class="btn btn-success"><i
                         class="fa-solid fa-circle-plus"></i>
                     Tambah</a>
             </div>
             <div class="card-body">
-                <div class="table-responsive col-lg-10 mb-4">
+                <div class="table-responsive col-lg-5 mb-4">
                     <table class="table table-bordered">
                         <thead class="thead-dark">
                             <tr class="table-primary">
                                 <th style="width: 2cm">No</th>
-                                <th>Kegiatan</th>
-                                <th>Hari</th>
-                                <th>Jam</th>
-                                <th>Tempat</th>
+                                <th>Nama</th>
+                                <th>Username</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($jadwalIbadah as $item)
+                            {{-- @foreach ($kategori as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->kegiatan }}</td>
-                                    <td>{{ $item->hari }}</td>
-                                    <td>{{ $item->jam }}</td>
-                                    <td>{{ $item->tempat }}</td>
-                                    <td><a href="/dashboard/jadwal-ibadah/{{ $item->id }}/edit" class="badge bg-warning"
-                                            style="text-decoration: none"> <i class="fa-solid fa-pen"></i> Edit</a></td>
+                                    <td>{{ $item->kategori }}</td>
+                                    <td>{{ $item->slug }}</td>
+                                    <td><a href="" class="badge bg-warning" style="text-decoration: none"> <i
+                                                class="fa-solid fa-pen"></i> Edit</a></td>
                                 </tr>
-                            @endforeach
+                            @endforeach --}}
                         </tbody>
                     </table>
                 </div>

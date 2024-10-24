@@ -11,14 +11,15 @@
                 <a href="/dashboard/jadwal-ibadah" type="button" class="btn btn-success"><i class="fa-solid fa-arrow-left"></i>
                     Kembali</a>
             </div>
-            <form action="/dashboard/jadwal-ibadah" method="post">
+            <form action="/dashboard/jadwal-ibadah/{{ $jadwal->id }}" method="post">
                 @csrf
+                @method('PUT')
                 <div class="card-body">
                     <div class="mb-3 col-lg-6">
                         <label for="kegiatan" class="form-label">Kegiatan :</label>
                         <input type="text" name="kegiatan" id="kegiatan"
-                            class="form-control @error('kegiatan') is-invalid @enderror" value="{{ old('kegiatan') }}"
-                            required>
+                            class="form-control @error('kegiatan') is-invalid @enderror"
+                            value="{{ old('kegiatan', $jadwal->kegiatan) }}" required>
                         @error('kegiatan')
                             <div class="invalid-feedback">
                                 Harus diisi
@@ -29,8 +30,8 @@
                         <div class="mb-3 col-lg-4">
                             <label for="hari" class="form-label">Hari :</label>
                             <input type="text" name="hari" id="hari"
-                                class="form-control @error('hari') is-invalid @enderror" value="{{ old('hari') }}"
-                                required>
+                                class="form-control @error('hari') is-invalid @enderror"
+                                value="{{ old('hari', $jadwal->hari) }}" required>
                             @error('hari')
                                 <div class="invalid-feedback">
                                     Harus diisi
@@ -40,8 +41,8 @@
                         <div class="mb-3 col-lg-2">
                             <label for="jam" class="form-label">Jam :</label>
                             <input type="text" name="jam" id="jam"
-                                class="form-control @error('jam') is-invalid @enderror" value="{{ old('jam') }}"
-                                required>
+                                class="form-control @error('jam') is-invalid @enderror"
+                                value="{{ old('jam', $jadwal->jam) }}" required>
                             @error('jam')
                                 <div class="invalid-feedback">
                                     Harus diisi
@@ -53,7 +54,8 @@
                     <div class="mb-3 col-lg-6">
                         <label for="tempat" class="form-label">Tempat :</label>
                         <input type="text" name="tempat" id="tempat"
-                            class="form-control @error('tempat') is-invalid @enderror" value="{{ old('tempat') }}" required>
+                            class="form-control @error('tempat') is-invalid @enderror"
+                            value="{{ old('tempat', $jadwal->tempat) }}" required>
                         @error('tempat')
                             <div class="invalid-feedback">
                                 Harus diisi
@@ -62,7 +64,7 @@
                     </div>
                 </div>
                 <div class="card-footer d-grid d-lg-flex justify-content-lg-end">
-                    <button type="submit" class="btn btn-success"><i class="fa-solid fa-circle-plus"></i> Tambah</button>
+                    <button type="submit" class="btn btn-success"><i class="fa-solid fa-pen"></i> Ubah</button>
                 </div>
             </form>
         </div>
