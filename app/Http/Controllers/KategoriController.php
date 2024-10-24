@@ -35,7 +35,6 @@ class KategoriController extends Controller
         // return $request;
         $validateDate = $request->validate([
             'kategori' => 'required|unique:kategoris',
-            'slug' => 'required|unique:kategoris,slug'
         ]);
 
         Kategori::create($validateDate);
