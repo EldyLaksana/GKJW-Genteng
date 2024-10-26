@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('renungans', function (Blueprint $table) {
             $table->id();
+            $table->string('judul');
+            $table->string('slug')->unique();
+            $table->string('gambar')->nullable();
+            $table->string('sumber_gambar')->nullable();
+            $table->text('renungan');
+            $table->text('excerpt');
+            $table->string('sumber')->nullable();
+            $table->string('status_publikasi')->default('published');
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
     }

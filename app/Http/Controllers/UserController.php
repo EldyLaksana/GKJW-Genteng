@@ -12,7 +12,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('backend.user.index');
+        $users = User::where('isAdmin', 0);
+        return view('backend.user.index', [
+            'users' => $users->paginate(10),
+        ]);
     }
 
     /**
@@ -30,9 +33,17 @@ class UserController extends Controller
     {
         // return $request;
         $validateData = $request->validate([
-            'nama' => 'required',
+            'name' => 'required',
             'username' => 'required|unique:users,username',
-            'password' => 'required',
+            'password' => [
+                'required',
+                'string',
+                'min:8',  // Minimal 8 karakter
+                'regex:/[a-z]/',      // Harus ada huruf kecil
+                'regex:/[A-Z]/',      // Harus ada huruf besar
+                'regex:/[0-9]/',      // Harus ada angka
+                'regex:/[@$!%*#?&]/', // Harus ada karakter spesial
+            ],
         ]);
 
         $validateData['password'] = bcrypt($validateData['password']);
@@ -55,7 +66,9 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('backend.user.edit', [
+            'user' => User::findOrFail($id),
+        ]);
     }
 
     /**
@@ -63,7 +76,30 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $validateData = $request->validate([
+            'name' => 'required',
+            'username' => 'required|unique:users,username' . $user->id,
+            'password' => [
+                'nullable',  // Membuat password opsional
+                'string',
+                'min:8',  // Minimal 8 karakter
+                'regex:/[a-z]/',      // Harus ada huruf kecil
+                'regex:/[A-Z]/',      // Harus ada huruf besar
+                'regex:/[0-9]/',      // Harus ada angka
+                'regex:/[@$!%*#?&]/', // Harus ada karakter spesial
+            ],
+        ]);
+
+        if ($request->filled('password')) {
+            $validateData['password'] = bcrypt($validateData['password']);
+        } else {
+            unset($validateData['password']);
+        }
+
+        $user->update($validateData);
+        return redirect()->route('user.index')->with('success', 'User berhasil diubah');
     }
 
     /**

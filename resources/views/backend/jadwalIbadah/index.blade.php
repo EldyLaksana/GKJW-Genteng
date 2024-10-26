@@ -29,7 +29,7 @@
                                 <th>Hari</th>
                                 <th>Jam</th>
                                 <th>Tempat</th>
-                                <th></th>
+                                <th>Menu</th>
                             </tr>
                         </thead>
                         <tbody>

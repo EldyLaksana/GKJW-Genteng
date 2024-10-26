@@ -15,12 +15,12 @@
                 @csrf
                 <div class="card-body">
                     <div class="mb-3 col-lg-4">
-                        <label for="nama" class="form-label">Nama :</label>
-                        <input type="text" name="nama" id="nama"
-                            class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama') }}" required>
-                        @error('nama')
+                        <label for="name" class="form-label">Nama :</label>
+                        <input type="text" name="name" id="name"
+                            class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required>
+                        @error('name')
                             <div class="invalid-feedback">
-                                Harus diisi
+                                {{ $message }}
                             </div>
                         @enderror
                     </div>
@@ -31,7 +31,7 @@
                             required>
                         @error('username')
                             <div class="invalid-feedback">
-                                Harus diisi
+                                {{ $message }}
                             </div>
                         @enderror
                     </div>
@@ -42,7 +42,7 @@
                             required>
                         @error('password')
                             <div class="invalid-feedback">
-                                Harus diisi
+                                {{ $message }}
                             </div>
                         @enderror
                     </div>

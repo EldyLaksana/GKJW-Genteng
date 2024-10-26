@@ -27,17 +27,17 @@
                                 <th style="width: 2cm">No</th>
                                 <th>Kategori</th>
                                 <th>Slug</th>
-                                <th></th>
+                                <th>Menu</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($kategori as $item)
+                            @foreach ($kategoris as $kategori)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->kategori }}</td>
-                                    <td>{{ $item->slug }}</td>
-                                    <td><a href="" class="badge bg-warning" style="text-decoration: none"> <i
-                                                class="fa-solid fa-pen"></i> Edit</a></td>
+                                    <td>{{ $kategori->kategori }}</td>
+                                    <td>{{ $kategori->slug }}</td>
+                                    <td><a href="/dashboard/kategori/{{ $kategori->id }}/edit" class="badge bg-warning"
+                                            style="text-decoration: none"> <i class="fa-solid fa-pen"></i> Edit</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

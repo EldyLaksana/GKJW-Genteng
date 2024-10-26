@@ -14,7 +14,7 @@ class KategoriController extends Controller
     public function index()
     {
         return view('backend.kategori.index', [
-            'kategori' => Kategori::all(),
+            'kategoris' => Kategori::all(),
         ]);
     }
 
@@ -52,17 +52,19 @@ class KategoriController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Kategori $kategori)
+    public function edit(string $id)
     {
-        //
+        return view('backend.kategori.edit', [
+            'kategori' => Kategori::findOrFail($id),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Kategori $kategori)
+    public function update(Request $request, string $id)
     {
-        //
+        return $request;
     }
 
     /**
