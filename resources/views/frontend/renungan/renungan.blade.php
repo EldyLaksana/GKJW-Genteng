@@ -21,29 +21,42 @@
 
             <div class="row gy-5">
 
-                <div class="col-lg-4 col-md-6">
-                    <article>
+                @foreach ($renungans as $renungan)
+                    <div class="col-lg-4 col-md-6">
+                        <article>
 
-                        <div class="post-img">
-                            <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
-                        </div>
+                            <div class="post-img">
+                                {{-- <img src="{{ asset($renungan->gambar) }}" alt="{{ $renungan->judul }}" class="img-fluid"> --}}
+                                <img src="{{ asset($renungan->gambar ? 'storage/' . $renungan->gambar : 'assets/img/default.jpg') }}"
+                                    alt="{{ $renungan->judul }}" class="img-fluid rounded">
+                            </div>
 
-                        <div class="meta-top">
-                            <ul>
-                                <li class="d-flex align-items-center"><a href="blog-details.html">Sorts</a></li>
-                                <li class="d-flex align-items-center"><i class="bi bi-dot"></i> <a
-                                        href="blog-details.html"><time datetime="2022-01-01">Jan 1, 2022</time></a></li>
-                            </ul>
-                        </div>
+                            <div class="meta-top">
+                                <ul>
+                                    <li class="d-flex align-items-center"><a href="#">Renungan</a></li>
+                                    <li class="d-flex align-items-center">
+                                        <i class="bi bi-dot"></i>
+                                        <a href="#">
+                                            <time datetime="{{ $renungan->published_at->toIso8601String() }}">
+                                                {{ $renungan->published_at->format('M j, Y') }}
+                                            </time>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
 
-                        <h2 class="title">
-                            <a href="blog-details.html">Dolorum optio tempore voluptas dignissimos</a>
-                        </h2>
+                            <h2 class="title">
+                                <a href="#">{{ $renungan->judul }}</a>
+                            </h2>
 
-                    </article>
-                </div><!-- End post list item -->
+                            <p>{{ $renungan->excerpt }}</p>
 
-                <div class="col-lg-4 col-md-6">
+                        </article>
+                    </div><!-- End post list item -->
+                @endforeach
+
+
+                {{-- <div class="col-lg-4 col-md-6">
 
                     <article>
 
@@ -65,9 +78,9 @@
 
                     </article>
 
-                </div><!-- End post list item -->
+                </div><!-- End post list item --> --}}
 
-                <div class="col-lg-4 col-md-6">
+                {{-- <div class="col-lg-4 col-md-6">
 
                     <article>
 
@@ -89,7 +102,7 @@
 
                     </article>
 
-                </div><!-- End post list item -->
+                </div><!-- End post list item --> --}}
 
             </div><!-- End blog posts list -->
 

@@ -20,26 +20,40 @@
                     Tambah</a>
             </div>
             <div class="card-body">
-                <div class="table-responsive col-lg-5 mb-4">
+                <div class="table-responsive col-lg-10 mb-4">
                     <table class="table table-bordered">
                         <thead class="thead-dark">
                             <tr class="table-primary">
                                 <th style="width: 2cm">No</th>
                                 <th>Judul</th>
-                                <th>Tanggal</th>
-                                <th>Menu</th>
+                                <th>Status</th>
+                                <th>Published at</th>
+                                <th style="width: 6cm">Menu</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($kategoris as $kategori)
+                            @foreach ($renungan as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $kategori->kategori }}</td>
-                                    <td>{{ $kategori->slug }}</td>
-                                    <td><a href="/dashboard/kategori/{{ $kategori->id }}/edit" class="badge bg-warning"
-                                            style="text-decoration: none"> <i class="fa-solid fa-pen"></i> Edit</a></td>
+                                    <td>{{ $item->judul }}</td>
+                                    <td>{{ $item->status_publikasi }}</td>
+                                    <td>{{ $item->published_at }}</td>
+                                    <td>
+                                        <a href="/dashboard/renungan/{{ $item->slug }}" class="badge bg-success"
+                                            style="text-decoration: none"> <i class="fa-solid fa-eye"></i> Show</a>
+                                        <a href="/dashboard/renungan/{{ $item->slug }}/edit" class="badge bg-warning"
+                                            style="text-decoration: none"> <i class="fa-solid fa-pen"></i> Edit</a>
+                                        <form action="/dashboard/renungan/{{ $item->slug }}" method="POST"
+                                            class="d-inline">
+                                            @method('delete')
+                                            @csrf
+                                            <button class="badge bg-danger border-0"
+                                                onclick="return confirm('Apakah anda yakin?')" title="Hapus"><i
+                                                    class="fa-solid fa-trash"></i> Hapus</button>
+                                        </form>
+                                    </td>
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
