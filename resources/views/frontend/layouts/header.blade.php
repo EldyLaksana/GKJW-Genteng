@@ -22,8 +22,9 @@
                 </li>
                 <li><a href="/warta-jemaat" class="{{ $judul === 'Warta Jemaat' ? 'active' : '' }}">Warta Jemaat</a>
                 </li>
-                <li><a href="/renungan">Renungan</a></li>
-                <li><a href="/kabar-jemaat">Kabar Jemaat</a></li>
+                <li><a href="/renungan" class="{{ $judul === 'Renungan' ? 'active' : '' }}">Renungan</a></li>
+                <li><a href="/kabar-jemaat" class="{{ $judul === 'Kabar Jemaat' ? 'active' : '' }}">Kabar Jemaat</a>
+                </li>
                 <li><a href="/kontak" class="{{ $judul === 'Kontak' ? 'active' : '' }}">Kontak</a></li>
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>

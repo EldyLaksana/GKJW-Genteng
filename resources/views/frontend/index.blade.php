@@ -56,7 +56,7 @@
     <!-- About 2 Section -->
     <section id="about-2" class="about-2 section light-background">
 
-        <div class="container">
+        <div class="container" data-aos="fade-up">
             <div class="content">
                 <div class="row justify-content-center">
                     <div class="table-responsive col-lg-10 mb-4">
@@ -102,24 +102,24 @@
                 @foreach ($renungans as $renungan)
                     <div class="col-md-6 col-lg-4">
                         <div class="post-entry" data-aos="fade-up" data-aos-delay="100">
-                            <a href="#" class="thumb d-block">
+                            <a href="renungan/{{ $renungan->slug }}" class="thumb d-block">
                                 <img src="{{ asset($renungan->gambar ? 'storage/' . $renungan->gambar : 'assets/img/default.jpg') }}"
                                     alt="{{ $renungan->judul }}" class="img-fluid rounded">
                             </a>
 
                             <div class="post-content">
                                 <div class="meta">
-                                    <a href="#" class="cat">Renungan</a> •
-                                    <span class="date">{{ $renungan->published_at->format('F d, Y') }}</span>
+                                    <a href="/renungan" class="cat">Renungan</a> •
+                                    <span class="date">{{ $renungan->published_at->translatedFormat('d F Y') }}</span>
                                 </div>
-                                <h3><a href="#">{{ $renungan->judul }}</a></h3>
-                                <p>{{ $renungan->excerpt }}</p>
+                                <h3><a href="renungan/{{ $renungan->slug }}">{{ $renungan->judul }}</a></h3>
+                                <p>{{ str_replace('&nbsp;', ' ', $renungan->excerpt) }}</p>
 
-                                <div class="d-flex author align-items-center">
+                                {{-- <div class="d-flex author align-items-center">
                                     <div class="author-name">
                                         <strong class="d-block">{{ $renungan->sumber ?? 'Admin' }}</strong>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>

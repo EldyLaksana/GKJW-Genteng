@@ -12,11 +12,12 @@ class FrontendController extends Controller
 {
     public function index()
     {
+        // Carbon::setLocale('id');
         $jadwalIbadah = JadwalIbadah::all();
         $renungans = Renungan::where(function ($query) {
-            $query->where('status_publikasi', 'published')
+            $query->where('status_publikasi', 'Published')
                 ->orWhere(function ($query) {
-                    $query->where('status_publikasi', 'scheduled')
+                    $query->where('status_publikasi', 'Scheduled')
                         ->where('published_at', '<=', now());
                 });
         })->orderBy('published_at', 'desc')->take(3)->get()->each(function ($renungan) {
@@ -51,12 +52,12 @@ class FrontendController extends Controller
     public function renungan()
     {
         $renungans = Renungan::where(function ($query) {
-            $query->where('status_publikasi', 'published')
+            $query->where('status_publikasi', 'Published')
                 ->orWhere(function ($query) {
-                    $query->where('status_publikasi', 'scheduled')
+                    $query->where('status_publikasi', 'Scheduled')
                         ->where('published_at', '<=', now());
                 });
-        })->orderBy('published_at', 'desc')->paginate(12); // Menggunakan paginate untuk pagination
+        })->orderBy('published_at', 'desc')->paginate(9); // Menggunakan paginate untuk pagination
 
         // Jika Anda perlu memformat tanggal, Anda dapat melakukannya di sini
         $renungans->each(function ($renungan) {
@@ -66,6 +67,32 @@ class FrontendController extends Controller
         return view('frontend.renungan.renungan', [
             'judul' => 'Renungan',
             'renungans' => $renungans,
+        ]);
+    }
+
+    public function showRenungan(Renungan $renungan)
+    {
+        $renungan->published_at = Carbon::parse($renungan->published_at);
+        $renunganLain = Renungan::where('slug', '!=', $renungan->slug)
+            ->where(function ($query) {
+                $query->where('status_publikasi', 'Published')
+                    ->orWhere(function ($query) {
+                        $query->where('status_publikasi', 'Scheduled')
+                            ->where('published_at', '<=', now());
+                    });
+            })
+            ->orderBy('published_at', 'desc')
+            ->take(5)
+            ->get();
+
+        $renunganLain->each(function ($renungan) {
+            $renungan->published_at = Carbon::parse($renungan->published_at);
+        });
+
+        return view('frontend.renungan.show', [
+            'judul' => 'Renungan',
+            'renungan' => $renungan,
+            'renunganLain' => $renunganLain,
         ]);
     }
 

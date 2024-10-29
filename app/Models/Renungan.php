@@ -14,4 +14,13 @@ class Renungan extends Model
     {
         return 'slug';
     }
+
+    public function getStatusPublikasiAttribute($value)
+    {
+        if ($value == 'Scheduled' && $this->published_at <= now()) {
+            // Ubah status menjadi 'Published' jika waktunya telah tiba
+            return 'Published';
+        }
+        return $value;
+    }
 }

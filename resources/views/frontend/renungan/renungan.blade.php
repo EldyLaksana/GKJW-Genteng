@@ -26,9 +26,10 @@
                         <article>
 
                             <div class="post-img">
-                                {{-- <img src="{{ asset($renungan->gambar) }}" alt="{{ $renungan->judul }}" class="img-fluid"> --}}
-                                <img src="{{ asset($renungan->gambar ? 'storage/' . $renungan->gambar : 'assets/img/default.jpg') }}"
-                                    alt="{{ $renungan->judul }}" class="img-fluid rounded">
+                                <a href="/renungan/{{ $renungan->slug }}" class="thumb d-block">
+                                    <img src="{{ asset($renungan->gambar ? 'storage/' . $renungan->gambar : 'assets/img/default.jpg') }}"
+                                        alt="{{ $renungan->judul }}" class="img-fluid rounded">
+                                </a>
                             </div>
 
                             <div class="meta-top">
@@ -38,7 +39,7 @@
                                         <i class="bi bi-dot"></i>
                                         <a href="#">
                                             <time datetime="{{ $renungan->published_at->toIso8601String() }}">
-                                                {{ $renungan->published_at->format('M j, Y') }}
+                                                {{ $renungan->published_at->translatedFormat('j F Y') }}
                                             </time>
                                         </a>
                                     </li>
@@ -46,15 +47,18 @@
                             </div>
 
                             <h2 class="title">
-                                <a href="#">{{ $renungan->judul }}</a>
+                                <a href="/renungan/{{ $renungan->slug }}">{{ $renungan->judul }}</a>
                             </h2>
 
-                            <p>{{ $renungan->excerpt }}</p>
+                            <p>{{ str_replace('&nbsp;', ' ', $renungan->excerpt) }}</p>
 
                         </article>
                     </div><!-- End post list item -->
                 @endforeach
 
+                <div class="d-flex justify-content-center pagination">
+                    {{ $renungans->links() }}
+                </div>
 
                 {{-- <div class="col-lg-4 col-md-6">
 

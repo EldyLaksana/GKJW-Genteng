@@ -34,6 +34,8 @@ Route::get('/kontak', [FrontendController::class, 'kontak']);
 
 Route::get('/renungan', [FrontendController::class, 'renungan']);
 
+Route::get('/renungan/{renungan:slug}', [FrontendController::class, 'showRenungan']);
+
 Route::get('/kabar-jemaat', [FrontendController::class, 'kabar']);
 
 Route::get('/sejarah', [FrontendController::class, 'sejarah']);

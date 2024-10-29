@@ -995,6 +995,28 @@ section,
   color: color-mix(in srgb, var(--default-color), transparent 25%);
 }
 
+.pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+.pagination li {
+  margin: 0 5px;
+}
+.pagination li a,
+.pagination li span {
+  padding: 8px 12px;
+  background-color: var(--background-color);
+  color: var(--default-color);
+  text-decoration: none;
+  border-radius: 5px;
+}
+.pagination li a:hover,
+.pagination li span.active {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
 /*--------------------------------------------------------------
 # Tabs Section
 --------------------------------------------------------------*/
