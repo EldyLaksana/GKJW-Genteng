@@ -13,8 +13,7 @@
                         <span class="material-symbols-outlined">
                             account_circle
                         </span>
-                        {{-- {{ Auth::user()->name }} --}}
-                        Admin
+                        {{ Auth::user()->name }}
                     </a>
                 </li>
                 <li class="nav-item">
@@ -34,15 +33,17 @@
                         Dashboard
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
-                        href="/dashboard/user">
-                        <span class="material-symbols-outlined">
-                            person_add
-                        </span>
-                        User
-                    </a>
-                </li>
+                @if (Auth::user()->isAdmin === 1)
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
+                            href="/dashboard/user">
+                            <span class="material-symbols-outlined">
+                                person_add
+                            </span>
+                            User
+                        </a>
+                    </li>
+                @endif
                 <hr class="my-3">
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
@@ -81,15 +82,18 @@
                         Kabar Jemaat
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
-                        href="/dashboard/kategori">
-                        <span class="material-symbols-outlined">
-                            category
-                        </span>
-                        Kategori
-                    </a>
-                </li>
+                @if (Auth::user()->isAdmin === 1)
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
+                            href="/dashboard/kategori">
+                            <span class="material-symbols-outlined">
+                                category
+                            </span>
+                            Kategori
+                        </a>
+                    </li>
+                @endif
+
 
             </ul>
 

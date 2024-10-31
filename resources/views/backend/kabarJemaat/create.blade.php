@@ -2,18 +2,19 @@
 
 @section('container')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Masukan Renungan</h1>
+        <h1 class="h2">Masukan Kabar Jemaat</h1>
     </div>
 
     <section class="section">
         <div class="card mb-3">
             <div class="card-header d-grid gap-2 d-lg-flex justify-content-lg-end">
-                <a href="/dashboard/renungan" type="button" class="btn btn-success"><i class="fa-solid fa-arrow-left"></i>
+                <a href="/dashboard/kabar-jemaat" type="button" class="btn btn-success"><i class="fa-solid fa-arrow-left"></i>
                     Kembali</a>
             </div>
-            <form action="/dashboard/renungan" method="post" enctype="multipart/form-data">
+            <form action="/dashboard/kabar-jemaat" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
+                    <input type="hidden" name="user_id" value="{{ $user_id }}">
                     <div class="mb-3 col-lg-6">
                         <label for="judul" class="form-label">Judul :</label>
                         <input type="text" name="judul" id="judul"
@@ -35,6 +36,18 @@
                         @enderror
                     </div>
                     <div class="mb-3 col-lg-6">
+                        <label for="kategori" class="form-label">Kategori :</label>
+                        <select name="kategori_id" id="kategori" class="form-select">
+                            @foreach ($kategoris as $kategori)
+                                @if (old('kategori_id') === $kategori->id)
+                                    <option value="{{ $kategori->id }} selected">{{ $kategori->kategori }}</option>
+                                @else
+                                    <option value="{{ $kategori->id }}">{{ $kategori->kategori }}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3 col-lg-6">
                         <label for="gambar" class="form-label">Gambar :</label>
                         <img class="gambar-preview img-fluid mb-3 col-sm-6">
                         <input type="file" name="gambar" id="gambar"
@@ -51,9 +64,9 @@
                             value="{{ old('sumber_gambar') }}">
                     </div>
                     <div class="mb-3 col-lg-8">
-                        <label for="renungan" class="form-label">Renungan :</label>
-                        <input type="hidden" id="renungan" name="renungan" value="{{ old('renungan') }}">
-                        <trix-editor input="renungan"></trix-editor>
+                        <label for="isi" class="form-label">Isi :</label>
+                        <input type="hidden" id="isi" name="isi" value="{{ old('isi') }}">
+                        <trix-editor input="isi"></trix-editor>
                     </div>
                     <div class="col-lg-6 mb-3">
                         <label for="sumber" class="form-label">Sumber :</label>

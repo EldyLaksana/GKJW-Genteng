@@ -130,6 +130,12 @@ class RenunganController extends Controller
      */
     public function destroy(Renungan $renungan)
     {
-        //
+        if ($renungan->gambar) {
+            Storage::delete($renungan->gambar);
+        }
+
+        Renungan::destroy($renungan->id);
+
+        return redirect()->route('renungan.index')->with('danger', 'Renungan berhasil dihapus');
     }
 }

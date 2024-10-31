@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\JadwalIbadah;
+use App\Models\KabarJemaat;
 use App\Models\Renungan;
 use App\Models\WartaJemaat;
 use Carbon\Carbon;
@@ -24,10 +25,21 @@ class FrontendController extends Controller
             $renungan->published_at = Carbon::parse($renungan->published_at);
         });
 
+        $kabarJemaats = KabarJemaat::with(['user', 'kategori'])->where(function ($query) {
+            $query->where('status_publikasi', 'Published')
+                ->orWhere(function ($query) {
+                    $query->where('status_publikasi', 'Scheduled')
+                        ->where('published_at', '<=', now());
+                });
+        })->orderBy('published_at', 'desc')->take(3)->get()->each(function ($kabarJemaat) {
+            $kabarJemaat->published_at = Carbon::parse($kabarJemaat->published_at);
+        });
+
         return view('frontend.index', [
             'judul' => 'Beranda',
             'jadwal' => $jadwalIbadah,
             'renungans' => $renungans,
+            'kabarJemaats' => $kabarJemaats,
         ]);
     }
 
@@ -98,8 +110,48 @@ class FrontendController extends Controller
 
     public function kabar()
     {
-        return view('frontend.kabar', [
-            'judul' => 'Kabar Jemaat'
+        $kabarJemaats = KabarJemaat::with(['user', 'kategori'])->where(function ($query) {
+            $query->where('status_publikasi', 'Published')
+                ->orWhere(function ($query) {
+                    $query->where('status_publikasi', 'Scheduled')
+                        ->where('published_at', '<=', now());
+                });
+        })->orderBy('published_at', 'desc')->paginate(9); // Menggunakan paginate untuk pagination
+
+        // Jika Anda perlu memformat tanggal, Anda dapat melakukannya di sini
+        $kabarJemaats->each(function ($kabarJemaat) {
+            $kabarJemaat->published_at = Carbon::parse($kabarJemaat->published_at);
+        });
+
+        return view('frontend.kabar.kabar', [
+            'judul' => 'Kabar Jemaat',
+            'kabarJemaats' => $kabarJemaats,
+        ]);
+    }
+
+    public function showKabar(KabarJemaat $kabarJemaat)
+    {
+        $kabarJemaat->published_at = Carbon::parse($kabarJemaat->published_at);
+        $kabarLain = Renungan::where('slug', '!=', $kabarJemaat->slug)
+            ->where(function ($query) {
+                $query->where('status_publikasi', 'Published')
+                    ->orWhere(function ($query) {
+                        $query->where('status_publikasi', 'Scheduled')
+                            ->where('published_at', '<=', now());
+                    });
+            })
+            ->orderBy('published_at', 'desc')
+            ->take(5)
+            ->get();
+
+        $kabarLain->each(function ($kabarJemaat) {
+            $kabarJemaat->published_at = Carbon::parse($kabarJemaat->published_at);
+        });
+
+        return view('frontend.kabar.show', [
+            'judul' => 'Kabar Jemaat',
+            'kabarJemaat' => $kabarJemaat,
+            'kabarLain' => $kabarLain,
         ]);
     }
 

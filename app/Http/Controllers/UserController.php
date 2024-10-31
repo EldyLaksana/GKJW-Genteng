@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -12,6 +13,9 @@ class UserController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->isAdmin !== 1) {
+            return redirect('/dashboard');
+        }
         $users = User::where('isAdmin', 0);
         return view('backend.user.index', [
             'users' => $users->paginate(10),
@@ -23,6 +27,9 @@ class UserController extends Controller
      */
     public function create()
     {
+        if (Auth::user()->isAdmin !== 1) {
+            return redirect('/dashboard');
+        }
         return view('backend.user.create');
     }
 
@@ -66,6 +73,9 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
+        if (Auth::user()->isAdmin !== 1) {
+            return redirect('/dashboard');
+        }
         return view('backend.user.edit', [
             'user' => User::findOrFail($id),
         ]);

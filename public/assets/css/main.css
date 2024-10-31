@@ -1795,6 +1795,47 @@ section,
   line-height: 1;
 }
 
+.blog-posts-2 .author .pic {
+  flex: 0 0 50px;
+  margin-right: 20px;
+}
+
+.blog-posts-2 .author .author-name {
+  line-height: 1.3;
+}
+
+.blog-posts-2 .author .author-name strong {
+  color: var(--heading-color);
+  font-weight: normal;
+}
+
+.blog-posts-2 .author .author-name span {
+  font-size: 14px;
+  color: color-mix(in srgb, var(--default-color), transparent 25%);
+}
+
+.pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+.pagination li {
+  margin: 0 5px;
+}
+.pagination li a,
+.pagination li span {
+  padding: 8px 12px;
+  background-color: var(--background-color);
+  color: var(--default-color);
+  text-decoration: none;
+  border-radius: 5px;
+}
+.pagination li a:hover,
+.pagination li span.active {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
 /*--------------------------------------------------------------
 # Blog Pagination Section
 --------------------------------------------------------------*/

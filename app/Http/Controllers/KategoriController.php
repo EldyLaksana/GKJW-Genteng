@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class KategoriController extends Controller
 {
@@ -13,6 +14,9 @@ class KategoriController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->isAdmin !== 1) {
+            return redirect('/dashboard');
+        }
         return view('backend.kategori.index', [
             'kategoris' => Kategori::all(),
         ]);
@@ -23,6 +27,9 @@ class KategoriController extends Controller
      */
     public function create()
     {
+        if (Auth::user()->isAdmin !== 1) {
+            return redirect('/dashboard');
+        }
         return view('backend.kategori.create');
     }
 
@@ -35,6 +42,7 @@ class KategoriController extends Controller
         // return $request;
         $validateDate = $request->validate([
             'kategori' => 'required|unique:kategoris',
+            'slug' => 'required',
         ]);
 
         Kategori::create($validateDate);
@@ -54,6 +62,9 @@ class KategoriController extends Controller
      */
     public function edit(string $id)
     {
+        if (Auth::user()->isAdmin !== 1) {
+            return redirect('/dashboard');
+        }
         return view('backend.kategori.edit', [
             'kategori' => Kategori::findOrFail($id),
         ]);
@@ -64,7 +75,14 @@ class KategoriController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        return $request;
+        // return $request;
+        $validateDate = $request->validate([
+            'kategori' => 'required|unique:kategoris',
+            'slug' => 'required',
+        ]);
+
+        Kategori::where('id', $id)->update($validateDate);
+        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil diubah');
     }
 
     /**

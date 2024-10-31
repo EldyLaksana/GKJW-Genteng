@@ -2,22 +2,25 @@
 
 @section('container')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Masukan Renungan</h1>
+        <h1 class="h2">Edit Kabar Jemaat</h1>
     </div>
 
     <section class="section">
         <div class="card mb-3">
             <div class="card-header d-grid gap-2 d-lg-flex justify-content-lg-end">
-                <a href="/dashboard/renungan" type="button" class="btn btn-success"><i class="fa-solid fa-arrow-left"></i>
+                <a href="/dashboard/kabar-jemaat" type="button" class="btn btn-success"><i class="fa-solid fa-arrow-left"></i>
                     Kembali</a>
             </div>
-            <form action="/dashboard/renungan" method="post" enctype="multipart/form-data">
+            <form action="/dashboard/kabar-jemaat/{{ $kabarJemaat->slug }}" method="post" enctype="multipart/form-data">
+                @method('PUT')
                 @csrf
                 <div class="card-body">
+                    <input type="hidden" name="user_id" value="{{ $user_id }}">
                     <div class="mb-3 col-lg-6">
                         <label for="judul" class="form-label">Judul :</label>
                         <input type="text" name="judul" id="judul"
-                            class="form-control @error('judul') is-invalid @enderror" value="{{ old('judul') }}" required>
+                            class="form-control @error('judul') is-invalid @enderror"
+                            value="{{ old('judul', $kabarJemaat->judul) }}" required>
                         @error('judul')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -27,7 +30,8 @@
                     <div class="mb-3 col-lg-6">
                         <label for="slug" class="form-label">Slug :</label>
                         <input type="text" name="slug" id="slug"
-                            class="form-control @error('slug') is-invalid @enderror" value="{{ old('slug') }}" required>
+                            class="form-control @error('slug') is-invalid @enderror"
+                            value="{{ old('slug', $kabarJemaat->slug) }}" required>
                         @error('slug')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -35,8 +39,24 @@
                         @enderror
                     </div>
                     <div class="mb-3 col-lg-6">
+                        <label for="kategori" class="form-label">Kategori :</label>
+                        <select name="kategori_id" id="kategori" class="form-select">
+                            @foreach ($kategoris as $kategori)
+                                <option value="{{ $kategori->id }}" @if (old('kategori_id', $kabarJemaat->kategori_id) == $kategori->id) selected @endif>
+                                    {{ $kategori->kategori }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3 col-lg-6">
                         <label for="gambar" class="form-label">Gambar :</label>
-                        <img class="gambar-preview img-fluid mb-3 col-sm-6">
+                        <input type="hidden" name="gambarLama" value="{{ $kabarJemaat->gambar }}">
+                        @if ($kabarJemaat->gambar)
+                            <img src="{{ asset('storage/' . $kabarJemaat->gambar) }}"
+                                class="gambar-preview img-fluid mb-3 col-sm-6 d-block">
+                        @else
+                            <img class="gambar-preview img-fluid mb-3 col-sm-6">
+                        @endif
                         <input type="file" name="gambar" id="gambar"
                             class="form-control @error('gambar') is-invalid @enderror" onchange="previewGambar()">
                         @error('gambar')
@@ -48,22 +68,23 @@
                     <div class="col-lg-6 mb-3">
                         <label for="sumber_gambar" class="form-label">Sumber :</label>
                         <input type="text" class="form-control" placeholder="" name="sumber_gambar" id="sumber_gambar"
-                            value="{{ old('sumber_gambar') }}">
+                            value="{{ old('sumber_gambar', $kabarJemaat->sumber_gambar) }}">
                     </div>
                     <div class="mb-3 col-lg-8">
-                        <label for="renungan" class="form-label">Renungan :</label>
-                        <input type="hidden" id="renungan" name="renungan" value="{{ old('renungan') }}">
-                        <trix-editor input="renungan"></trix-editor>
+                        <label for="isi" class="form-label">Isi :</label>
+                        <input type="hidden" id="isi" name="isi" value="{{ old('isi', $kabarJemaat->isi) }}">
+                        <trix-editor input="isi"></trix-editor>
                     </div>
                     <div class="col-lg-6 mb-3">
                         <label for="sumber" class="form-label">Sumber :</label>
                         <input type="text" class="form-control" placeholder="" name="sumber" id="sumber"
-                            value="{{ old('sumber') }}">
+                            value="{{ old('sumber', $kabarJemaat->sumber) }}">
                     </div>
                     <div class="col-lg-6 mb-3">
                         <label for="published_at" class="form-label">Tanggal Publikasi :</label>
                         <input type="text" name="published_at" id="published_at" class="form-control"
-                            placeholder="Pilih tanggal dan jam" value="{{ old('published_at') }}">
+                            placeholder="Pilih tanggal dan jam"
+                            value="{{ old('published_at', $kabarJemaat->published_at) }}">
                         <small class="form-text text-muted">Biarkan kosong untuk mempublikasikan sekarang.</small>
                     </div>
                 </div>

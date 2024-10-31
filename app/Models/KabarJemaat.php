@@ -9,4 +9,28 @@ class KabarJemaat extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function getStatusPublikasiAttribute($value)
+    {
+        if ($value == 'Scheduled' && $this->published_at <= now()) {
+            // Ubah status menjadi 'Published' jika waktunya telah tiba
+            return 'Published';
+        }
+        return $value;
+    }
 }

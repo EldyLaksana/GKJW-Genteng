@@ -6,6 +6,7 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\JadwalIbadahController;
 use App\Http\Controllers\KabarJemaatController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RenunganController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WartaJemaatController;
@@ -38,21 +39,30 @@ Route::get('/renungan/{renungan:slug}', [FrontendController::class, 'showRenunga
 
 Route::get('/kabar-jemaat', [FrontendController::class, 'kabar']);
 
+Route::get('/kabar-jemaat/{kabarJemaat:slug}', [FrontendController::class, 'showKabar']);
+
 Route::get('/sejarah', [FrontendController::class, 'sejarah']);
 
+// Login
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 
-// Backend
+Route::post('/login', [LoginController::class, 'authenticate']);
 
-Route::get('/dashboard', [BackendController::class, 'index']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::resource('/dashboard/jadwal-ibadah', JadwalIbadahController::class);
+Route::group(['middleware' => 'auth'], function () {
+    // Backend
+    Route::get('/dashboard', [BackendController::class, 'index']);
 
-Route::resource('/dashboard/warta-jemaat', WartaJemaatController::class);
+    Route::resource('/dashboard/jadwal-ibadah', JadwalIbadahController::class);
 
-Route::resource('/dashboard/renungan', RenunganController::class);
+    Route::resource('/dashboard/warta-jemaat', WartaJemaatController::class);
 
-Route::resource('/dashboard/kabar-jemaat', KabarJemaatController::class);
+    Route::resource('/dashboard/renungan', RenunganController::class);
 
-Route::resource('/dashboard/kategori', KategoriController::class);
+    Route::resource('/dashboard/kabar-jemaat', KabarJemaatController::class);
 
-Route::resource('/dashboard/user', UserController::class);
+    Route::resource('/dashboard/kategori', KategoriController::class);
+
+    Route::resource('/dashboard/user', UserController::class);
+});

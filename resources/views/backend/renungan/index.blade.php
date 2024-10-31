@@ -12,6 +12,13 @@
         </div>
     @endif
 
+    @if (session()->has('danger'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('danger') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <section class="section">
         <div class="card mb-3">
             <div class="card-header d-grid gap-2 d-lg-flex justify-content-lg-end">
@@ -20,7 +27,7 @@
                     Tambah</a>
             </div>
             <div class="card-body">
-                <div class="table-responsive col-lg-10 mb-4">
+                <div class="table-responsive col-lg-12 mb-4">
                     <table class="table table-bordered">
                         <thead class="thead-dark">
                             <tr class="table-primary">
@@ -34,7 +41,7 @@
                         <tbody>
                             @foreach ($renungan as $item)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td> {{ $loop->iteration + ($renungan->currentPage() - 1) * $renungan->perPage() }}</td>
                                     <td>{{ $item->judul }}</td>
                                     <td>{{ $item->status_publikasi }}</td>
                                     <td>{{ $item->published_at }}</td>
@@ -56,6 +63,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="d-flex justify-content-center">
+                        {{ $renungan->links() }}
+                    </div>
                 </div>
             </div>
         </div>

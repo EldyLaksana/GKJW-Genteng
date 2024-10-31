@@ -192,95 +192,37 @@
         <div class="container">
 
             <div class="row gy-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="post-entry" data-aos="fade-up" data-aos-delay="100">
-                        <a href="#" class="thumb d-block"><img src="assets/img/img_h_4.jpg" alt="Image"
-                                class="img-fluid rounded"></a>
+                @foreach ($kabarJemaats as $kabarJemaat)
+                    <div class="col-md-6 col-lg-4">
+                        <div class="post-entry" data-aos="fade-up" data-aos-delay="100">
+                            <a href="kabar-jemaat/{{ $kabarJemaat->slug }}" class="thumb d-block">
+                                <img src="{{ asset($kabarJemaat->gambar ? 'storage/' . $kabarJemaat->gambar : 'assets/img/default.jpg') }}"
+                                    alt="{{ $kabarJemaat->judul }}" class="img-fluid rounded">
+                            </a>
 
-                        <div class="post-content">
-                            <div class="meta">
-                                <a href="#" class="cat">Kabar Jemaat</a> •
-                                <span class="date">July 20, 2020</span>
-                            </div>
-                            <h3><a href="#">There live the blind texts they live</a></h3>
-                            <p>
-                                Far far away, behind the word mountains, far from the countries
-                                Vokalia and Consonantia, there live the blind texts.
-                            </p>
+                            <div class="post-content">
+                                <div class="meta">
+                                    <a href="/kabar-jemaat" class="cat">Kabar Jemaat</a> •
+                                    <span class="date">{{ $kabarJemaat->published_at->translatedFormat('d F Y') }}</span>
+                                </div>
+                                <h3><a href="/kabar-jemaat/{{ $kabarJemaat->slug }}">{{ $kabarJemaat->judul }}</a></h3>
+                                <p>{{ str_replace('&nbsp;', ' ', $kabarJemaat->excerpt) }}</p>
 
-                            <div class="d-flex author align-items-center">
-                                {{-- <div class="pic">
+                                <div class="d-flex author align-items-center">
+                                    {{-- <div class="pic">
                                     <img src="assets/img/team/team-3.jpg" alt="Image"
                                         class="img-fluid rounded-circle">
                                 </div> --}}
-                                <div class="author-name">
-                                    <strong class="d-block">Winston Gold</strong>
-                                    <span class="">Lead Product Designer</span>
+                                    <div class="author-name">
+                                        <strong class="d-block">{{ $kabarJemaat->user->name ?? 'Admin' }}</strong>
+                                        <span class="">{{ $kabarJemaat->kategori->kategori }}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
 
-                <div class="col-md-6 col-lg-4">
-                    <div class="post-entry" data-aos="fade-up" data-aos-delay="200">
-                        <a href="#" class="thumb d-block"><img src="assets/img/img_h_2.jpg" alt="Image"
-                                class="img-fluid rounded"></a>
-
-                        <div class="post-content">
-                            <div class="meta">
-                                <a href="#" class="cat">Kabar Jemaat</a> •
-                                <span class="date">July 20, 2020</span>
-                            </div>
-                            <h3><a href="#">There live the blind texts they live</a></h3>
-                            <p>
-                                Far far away, behind the word mountains, far from the countries
-                                Vokalia and Consonantia, there live the blind texts.
-                            </p>
-
-                            <div class="d-flex author align-items-center">
-                                {{-- <div class="pic">
-                                    <img src="assets/img/team/team-2.jpg" alt="Image"
-                                        class="img-fluid rounded-circle">
-                                </div> --}}
-                                <div class="author-name">
-                                    <strong class="d-block">Winston Gold</strong>
-                                    <span class="">Lead Product Designer</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="post-entry" data-aos="fade-up" data-aos-delay="300">
-                        <a href="#" class="thumb d-block"><img src="assets/img/img_h_3.jpg" alt="Image"
-                                class="img-fluid rounded"></a>
-
-                        <div class="post-content">
-                            <div class="meta">
-                                <a href="#" class="cat">Kabar Jemaat</a> •
-                                <span class="date">July 20, 2020</span>
-                            </div>
-                            <h3><a href="#">There live the blind texts they live</a></h3>
-                            <p>
-                                Far far away, behind the word mountains, far from the countries
-                                Vokalia and Consonantia, there live the blind texts.
-                            </p>
-
-                            <div class="d-flex author align-items-center">
-                                {{-- <div class="pic">
-                                    <img src="assets/img/team/team-1.jpg" alt="Image"
-                                        class="img-fluid rounded-circle">
-                                </div> --}}
-                                <div class="author-name">
-                                    <strong class="d-block">Winston Gold</strong>
-                                    <span class="">Lead Product Designer</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section><!-- /Blog Posts Section -->

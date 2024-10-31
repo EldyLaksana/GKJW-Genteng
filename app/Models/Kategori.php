@@ -26,4 +26,9 @@ class Kategori extends Model
     {
         return 'slug';
     }
+
+    public function kabarJemaats()
+    {
+        return $this->hasMany(KabarJemaat::class);
+    }
 }

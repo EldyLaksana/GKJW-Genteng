@@ -13,6 +13,17 @@ return new class extends Migration
     {
         Schema::create('kabar_jemaats', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->foreignId('kategori_id');
+            $table->string('judul');
+            $table->string('slug')->unique();
+            $table->string('gambar')->nullable();
+            $table->string('sumber_gambar')->nullable();
+            $table->text('excerpt');
+            $table->text('isi');
+            $table->string('sumber')->nullable();
+            $table->string('status_publikasi')->default('published');
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
     }
