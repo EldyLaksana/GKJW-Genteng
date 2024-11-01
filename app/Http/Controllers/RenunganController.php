@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Renungan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -130,6 +131,11 @@ class RenunganController extends Controller
      */
     public function destroy(Renungan $renungan)
     {
+
+        if (Auth::user()->isAdmin !== 1) {
+            return redirect('/dashboard/renungan');
+        }
+
         if ($renungan->gambar) {
             Storage::delete($renungan->gambar);
         }

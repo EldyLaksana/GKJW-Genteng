@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('warta_jemaats', function (Blueprint $table) {
             $table->id();
-            $table->string('embed');
+            $table->text('embed');
             $table->timestamps();
         });
     }

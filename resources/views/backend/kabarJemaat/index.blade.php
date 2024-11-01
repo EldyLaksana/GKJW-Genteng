@@ -51,14 +51,17 @@
                                             style="text-decoration: none"> <i class="fa-solid fa-eye"></i> Show</a>
                                         <a href="/dashboard/kabar-jemaat/{{ $item->slug }}/edit" class="badge bg-warning"
                                             style="text-decoration: none"> <i class="fa-solid fa-pen"></i> Edit</a>
-                                        <form action="/dashboard/kabar-jemaat/{{ $item->slug }}" method="POST"
-                                            class="d-inline">
-                                            @method('delete')
-                                            @csrf
-                                            <button class="badge bg-danger border-0"
-                                                onclick="return confirm('Apakah anda yakin?')" title="Hapus"><i
-                                                    class="fa-solid fa-trash"></i> Hapus</button>
-                                        </form>
+                                        @if (auth()->user()->isAdmin == 1)
+                                            <form action="/dashboard/kabar-jemaat/{{ $item->slug }}" method="POST"
+                                                class="d-inline">
+                                                @method('delete')
+                                                @csrf
+                                                <button class="badge bg-danger border-0"
+                                                    onclick="return confirm('Apakah anda yakin?')" title="Hapus">
+                                                    <i class="fa-solid fa-trash"></i> Hapus
+                                                </button>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

@@ -37,8 +37,8 @@
 
                             <div class="meta-top">
                                 <ul>
-                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
-                                            href="#">Admin</a></li>
+                                    {{-- <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
+                                            href="#">Admin</a></li> --}}
                                     <li class="d-flex align-items-center"><i class="bi bi-clock"></i><time
                                             datetime="{{ $renungan->published_at->toIso8601String() }}">
                                             {{ $renungan->published_at->translatedFormat('d F Y') }}

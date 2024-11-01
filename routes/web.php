@@ -8,6 +8,7 @@ use App\Http\Controllers\KabarJemaatController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RenunganController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WartaJemaatController;
 
@@ -42,6 +43,8 @@ Route::get('/kabar-jemaat', [FrontendController::class, 'kabar']);
 Route::get('/kabar-jemaat/{kabarJemaat:slug}', [FrontendController::class, 'showKabar']);
 
 Route::get('/sejarah', [FrontendController::class, 'sejarah']);
+
+Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 
 // Login
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');

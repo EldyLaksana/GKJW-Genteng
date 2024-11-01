@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\JadwalIbadah;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JadwalIbadahController extends Controller
 {
@@ -12,6 +13,9 @@ class JadwalIbadahController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->isAdmin !== 1) {
+            return redirect('/dashboard');
+        }
         $jadwalIbadah = JadwalIbadah::all();
         return view('backend.jadwalIbadah.index', [
             'jadwalIbadah' => $jadwalIbadah,
@@ -23,6 +27,9 @@ class JadwalIbadahController extends Controller
      */
     public function create()
     {
+        if (Auth::user()->isAdmin !== 1) {
+            return redirect('/dashboard');
+        }
         return view('backend.jadwalIbadah.create');
     }
 
@@ -56,6 +63,9 @@ class JadwalIbadahController extends Controller
      */
     public function edit(JadwalIbadah $jadwalIbadah)
     {
+        if (Auth::user()->isAdmin !== 1) {
+            return redirect('/dashboard');
+        }
         // return $jadwalIbadah;
         return view('backend.jadwalIbadah.edit', [
             'jadwal' => $jadwalIbadah,

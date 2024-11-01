@@ -75,6 +75,14 @@
                         <input type="hidden" id="isi" name="isi" value="{{ old('isi', $kabarJemaat->isi) }}">
                         <trix-editor input="isi"></trix-editor>
                     </div>
+                    @if (Auth::user()->isAdmin === 1)
+                        <div class="mb-3 col-lg-6">
+                            <label for="embed" class="form-label">Embed Video :</label>
+                            <input type="text" name="embed" id="embed"
+                                class="form-control @error('embed') is-invalid @enderror" value="{{ old('embed') }}">
+                            <small class="form-text text-muted">Jika ingin menambahkan video dapat diisi embed </small>
+                        </div>
+                    @endif
                     <div class="col-lg-6 mb-3">
                         <label for="sumber" class="form-label">Sumber :</label>
                         <input type="text" class="form-control" placeholder="" name="sumber" id="sumber"
@@ -89,8 +97,8 @@
                     </div>
                 </div>
                 <div class="card-footer d-grid d-lg-flex justify-content-lg-end">
-                    <button type="submit" class="btn btn-success"><i class="fa-solid fa-circle-plus"></i>
-                        Tambah</button>
+                    <button type="submit" class="btn btn-success"><i class="fa-solid fa-pen"></i>
+                        Edit</button>
                 </div>
             </form>
         </div>
@@ -130,6 +138,25 @@
             locale: {
                 firstDayOfWeek: 1 // Set awal minggu ke Senin
             }
+        });
+
+        document.addEventListener("trix-initialize", () => {
+            // Tambahkan tombol custom untuk embed
+            const toolbar = document.querySelector("trix-toolbar");
+            const buttonHTML =
+                `<button type="button" class="trix-button trix-button--icon" data-trix-action="embed" title="Embed Media">Embed</button>`;
+            toolbar.insertAdjacentHTML("beforeend", buttonHTML);
+
+            // Tangani klik pada tombol embed
+            toolbar.querySelector('[data-trix-action="embed"]').addEventListener("click", () => {
+                const url = prompt("Masukkan URL media yang ingin di-embed:");
+                if (url) {
+                    const embedHTML =
+                        `<iframe src="${url}" width="560" height="315" frameborder="0" allowfullscreen></iframe>`;
+                    const editor = document.getElementById("editor");
+                    editor.editor.insertHTML(embedHTML);
+                }
+            });
         });
     </script>
 @endsection

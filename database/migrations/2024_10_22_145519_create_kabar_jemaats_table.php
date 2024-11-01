@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('sumber_gambar')->nullable();
             $table->text('excerpt');
             $table->text('isi');
+            $table->text('embed')->nullable();
             $table->string('sumber')->nullable();
             $table->string('status_publikasi')->default('published');
             $table->timestamp('published_at')->nullable();

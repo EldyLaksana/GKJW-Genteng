@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\KabarJemaat;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -15,17 +16,7 @@ class KabarJemaatController extends Controller
      */
     public function index()
     {
-        // Mendapatkan user yang sedang login
-        $user = auth()->user();
-
-        // Cek apakah user memiliki isAdmin 1
-        if ($user->isAdmin == 1) {
-            // Jika isAdmin 1, tampilkan semua data KabarJemaat
-            $kabarJemaat = KabarJemaat::latest()->paginate(10);
-        } else {
-            // Jika isAdmin 0, tampilkan hanya data KabarJemaat milik user tersebut
-            $kabarJemaat = KabarJemaat::where('user_id', $user->id)->latest()->paginate(10);
-        }
+        $kabarJemaat = KabarJemaat::latest()->paginate(10);
 
         return view('backend.kabarJemaat.index', [
             'kabarJemaat' => $kabarJemaat,
@@ -53,10 +44,11 @@ class KabarJemaatController extends Controller
             'user_id' => '',
             'kategori_id' => '',
             'judul' => 'required|max:255',
-            'slug' => 'required|unique:kabarJemaats,slug',
+            'slug' => 'required|unique:kabar_jemaats,slug',
             'gambar' => 'image|file|mimes:jpg,jpeg,png|max:5000',
             'sumber_gambar' => 'nullable',
             'isi' => 'required',
+            'embed' => 'nullable',
             'sumber' => 'nullable',
             'published_at' => 'nullable|date',
         ]);
@@ -147,6 +139,11 @@ class KabarJemaatController extends Controller
      */
     public function destroy(KabarJemaat $kabarJemaat)
     {
+
+        if (Auth::user()->isAdmin !== 1) {
+            return redirect('/dashboard/kabar-jemaat');
+        }
+
         if ($kabarJemaat->gambar) {
             Storage::delete($kabarJemaat->gambar);
         }

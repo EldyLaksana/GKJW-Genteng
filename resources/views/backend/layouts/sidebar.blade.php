@@ -44,25 +44,27 @@
                         </a>
                     </li>
                 @endif
-                <hr class="my-3">
-                <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
-                        href="/dashboard/jadwal-ibadah">
-                        <span class="material-symbols-outlined">
-                            event_note
-                        </span>
-                        Jadwal Ibadah
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
-                        href="/dashboard/warta-jemaat/create">
-                        <span class="material-symbols-outlined">
-                            note_alt
-                        </span>
-                        Warta Jemaat
-                    </a>
-                </li>
+                @if (Auth::user()->isAdmin === 1)
+                    <hr class="my-3">
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
+                            href="/dashboard/jadwal-ibadah">
+                            <span class="material-symbols-outlined">
+                                event_note
+                            </span>
+                            Jadwal Ibadah
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
+                            href="/dashboard/warta-jemaat/create">
+                            <span class="material-symbols-outlined">
+                                note_alt
+                            </span>
+                            Warta Jemaat
+                        </a>
+                    </li>
+                @endif
                 <hr class="my-3">
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"

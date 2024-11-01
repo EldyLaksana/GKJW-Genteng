@@ -38,7 +38,7 @@
                             <div class="meta-top">
                                 <ul>
                                     <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
-                                            href="#">Admin</a></li>
+                                            href="#">{{ $kabarJemaat->user->name ?? 'Admin' }}</a></li>
                                     <li class="d-flex align-items-center"><i class="bi bi-clock"></i><time
                                             datetime="{{ $kabarJemaat->published_at->toIso8601String() }}">
                                             {{ $kabarJemaat->published_at->translatedFormat('d F Y') }}
@@ -48,8 +48,13 @@
 
                             <div class="content">
                                 {!! $kabarJemaat->isi !!}
-
                             </div><!-- End post content -->
+
+                            @if ($kabarJemaat->embed)
+                                <div class="ratio ratio-16x9">
+                                    {!! $kabarJemaat->embed !!}
+                                </div>
+                            @endif
 
                             <div class="meta-bottom">
                                 <i class="bi bi-folder"></i>
@@ -238,11 +243,11 @@
                     <!-- Recent Posts Widget -->
                     <div class="recent-posts-widget widget-item">
 
-                        <h3 class="widget-title">Renungan Lain</h3>
+                        <h3 class="widget-title">Kabar Lain</h3>
 
                         <div class="post-item">
                             @foreach ($kabarLain as $kabar)
-                                <h4><a href="/jemaat_kabar/{{ $kabar->slug }}">{{ $kabar->judul }}</a></h4>
+                                <h4><a href="/kabar-jemaat/{{ $kabar->slug }}">{{ $kabar->judul }}</a></h4>
                                 <time datetime="{{ $kabar->published_at->toIso8601String() }}">
                                     {{ $kabar->published_at->translatedFormat('d F Y') }}
                                 </time>

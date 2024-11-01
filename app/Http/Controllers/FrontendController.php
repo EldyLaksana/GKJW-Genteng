@@ -132,7 +132,7 @@ class FrontendController extends Controller
     public function showKabar(KabarJemaat $kabarJemaat)
     {
         $kabarJemaat->published_at = Carbon::parse($kabarJemaat->published_at);
-        $kabarLain = Renungan::where('slug', '!=', $kabarJemaat->slug)
+        $kabarLain = KabarJemaat::where('slug', '!=', $kabarJemaat->slug)
             ->where(function ($query) {
                 $query->where('status_publikasi', 'Published')
                     ->orWhere(function ($query) {

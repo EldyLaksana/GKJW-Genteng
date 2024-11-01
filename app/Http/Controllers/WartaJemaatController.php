@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\WartaJemaat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Mews\Purifier\Facades\Purifier;
 
 class WartaJemaatController extends Controller
@@ -21,6 +22,9 @@ class WartaJemaatController extends Controller
      */
     public function create()
     {
+        if (Auth::user()->isAdmin !== 1) {
+            return redirect('/dashboard');
+        }
         return view('backend.wartaJemaat.create');
     }
 
