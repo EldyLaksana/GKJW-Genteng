@@ -160,7 +160,7 @@ h6 {
 }
 
 .header .logo h1 {
-  font-size: 30px;
+  font-size: 22px;
   margin: 0;
   font-weight: 300;
   color: var(--heading-color);
@@ -1402,12 +1402,24 @@ section,
   overflow: hidden;
 }
 
-.portfolio .portfolio-item .portfolio-info {
+/* .portfolio .portfolio-item .portfolio-info {
   opacity: 0;
   position: absolute;
   left: 12px;
   right: 12px;
   bottom: -100%;
+  z-index: 3;
+  transition: all ease-in-out 0.5s;
+  background: color-mix(in srgb, var(--background-color), transparent 10%);
+  padding: 15px;
+} */
+
+.portfolio .portfolio-item .portfolio-info {
+  opacity: 1; /* Set opacity to 1 so it is visible by default */
+  bottom: 0; /* Set bottom to 0 so it stays in place */
+  position: absolute;
+  left: 12px;
+  right: 12px;
   z-index: 3;
   transition: all ease-in-out 0.5s;
   background: color-mix(in srgb, var(--background-color), transparent 10%);
@@ -1834,6 +1846,36 @@ section,
 .pagination li span.active {
   background-color: var(--accent-color);
   color: #fff;
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.search-form .input-group {
+  width: 100%;
+  max-width: 450px;
+}
+
+.search-form .form-control {
+  border-radius: 30px 0 0 30px;
+  border-color: #ddd;
+  box-shadow: none;
+  padding: 10px 20px;
+}
+
+.search-form .btn {
+  border-radius: 0 30px 30px 0;
+  background-color: var(--heading-color);
+  color: #fff;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+}
+
+.search-form .btn:hover {
+  background-color: var(--accent-color);
 }
 
 /*--------------------------------------------------------------

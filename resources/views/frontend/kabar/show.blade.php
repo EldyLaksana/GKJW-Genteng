@@ -39,10 +39,13 @@
                                 <ul>
                                     <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
                                             href="#">{{ $kabarJemaat->user->name ?? 'Admin' }}</a></li>
-                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i><time
-                                            datetime="{{ $kabarJemaat->published_at->toIso8601String() }}">
-                                            {{ $kabarJemaat->published_at->translatedFormat('d F Y') }}
-                                        </time></li>
+                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
+                                            href="blog-details.html"><time
+                                                datetime="">{{ $kabarJemaat->published_at->translatedFormat('d F Y') }}</time></a>
+                                    </li>
+                                    <li class="d-flex align-items-center"><i class="bi bi-tag"></i> <a
+                                            href="/kabar-jemaat/kategori/{{ $kabarJemaat->kategori->slug }}">{{ $kabarJemaat->kategori->kategori }}</a>
+                                    </li>
                                 </ul>
                             </div><!-- End meta top -->
 
@@ -55,6 +58,16 @@
                                     {!! $kabarJemaat->embed !!}
                                 </div>
                             @endif
+
+                            <!-- Share Buttons -->
+                            <div class="share-buttons mt-4">
+                                <span>Bagikan :</span>
+                                <div class="social-links">
+
+                                </div>
+
+                            </div>
+                            <!-- End Share Buttons -->
 
                             <div class="meta-bottom">
                                 <i class="bi bi-folder"></i>
@@ -256,25 +269,32 @@
                         </div><!-- End recent post item-->
                     </div><!--/Recent Posts Widget -->
 
-                    {{-- <!-- Tags Widget -->
+                    <!-- Tags Widget -->
                     <div class="tags-widget widget-item">
 
-                        <h3 class="widget-title">Tags</h3>
-                        <ul>
-                            <li><a href="#">App</a></li>
-                            <li><a href="#">IT</a></li>
-                            <li><a href="#">Business</a></li>
-                            <li><a href="#">Mac</a></li>
-                            <li><a href="#">Design</a></li>
-                            <li><a href="#">Office</a></li>
-                            <li><a href="#">Creative</a></li>
-                            <li><a href="#">Studio</a></li>
-                            <li><a href="#">Smart</a></li>
-                            <li><a href="#">Tips</a></li>
-                            <li><a href="#">Marketing</a></li>
-                        </ul>
+                        <h3 class="widget-title">Kategori</h3>
+                        @foreach ($kategoris as $kategori)
+                            <ul>
+                                <li><a href="/kabar-jemaat/kategori/{{ $kategori->slug }}">{{ $kategori->kategori }}</a>
+                                </li>
+                            </ul>
+                        @endforeach
 
-                    </div><!--/Tags Widget --> --}}
+
+                    </div><!--/Tags Widget -->
+
+                    {{-- <div class="blog-author-widget widget-item">
+                        <h3 class="widget-title">Bagikan</h3>
+                        <div class="social-links">
+                            <a href="https://facebook.com/sharer/sharer.php?u={{ urlencode(request()->fullUrl()) }}"
+                                target="_blank"><i class="bi bi-facebook"></i></a>
+                            <a href="https://wa.me/?text={{ urlencode(request()->fullUrl()) }}" target="_blank"><i
+                                    class="bi bi-whatsapp"></i></a>
+                            <a href="mailto:?subject={{ urlencode($kabarJemaat->judul) }}&body={{ urlencode(request()->fullUrl()) }}"
+                                target="_blank"><i class="bi bi-envelope"></i></a>
+                        </div>
+
+                    </div><!--/Blog Author Widget --> --}}
 
                 </div>
 

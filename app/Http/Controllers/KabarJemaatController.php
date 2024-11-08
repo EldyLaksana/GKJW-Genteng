@@ -16,7 +16,14 @@ class KabarJemaatController extends Controller
      */
     public function index()
     {
-        $kabarJemaat = KabarJemaat::latest()->paginate(10);
+        $kabarJemaat = KabarJemaat::query();
+
+        // return ($kabarJemaat);
+        if (request('judul')) {
+            $kabarJemaat->where('kabar_jemaats.judul', 'like', '%' . request('judul') . '%');
+        }
+
+        $kabarJemaat = $kabarJemaat->latest()->paginate(10);
 
         return view('backend.kabarJemaat.index', [
             'kabarJemaat' => $kabarJemaat,
@@ -50,6 +57,7 @@ class KabarJemaatController extends Controller
             'isi' => 'required',
             'embed' => 'nullable',
             'sumber' => 'nullable',
+            'status_publikasi' => 'nullable',
             'published_at' => 'nullable|date',
         ]);
 
@@ -60,12 +68,18 @@ class KabarJemaatController extends Controller
 
         $validateData['excerpt'] = Str::limit(strip_tags($request->isi), 250, '...');
 
-        if ($request->filled('published_at')) {
-            $validateData['status_publikasi'] = 'Scheduled';
+        // Jika status publikasi adalah Scheduled, maka published_at wajib diisi
+        if ($request->status_publikasi === 'Jadwalkan') {
+            $request->validate([
+                'published_at' => 'required|date',
+            ]);
             $validateData['published_at'] = $request->published_at;
+        } elseif ($request->status_publikasi === 'Sekarang') {
+            // Jika statusnya Publish, atur waktu publikasi saat ini
+            $validateData['published_at'] = now();
         } else {
-            $validateData['status_publikasi'] = 'Published';
-            $validateData['published_at'] = now(); // Mengatur ke waktu saat ini
+            // Jika statusnya Draft, kosongkan published_at
+            $validateData['published_at'] = null;
         }
 
         KabarJemaat::create($validateData);
@@ -108,6 +122,7 @@ class KabarJemaatController extends Controller
             'sumber_gambar' => 'nullable',
             'isi' => 'required',
             'sumber' => 'nullable',
+            'status_publikasi' => 'nullable',
             'published_at' => 'nullable|date',
         ]);
 
@@ -121,12 +136,18 @@ class KabarJemaatController extends Controller
 
         $validateData['excerpt'] = Str::limit(strip_tags($request->isi), 250, '...');
 
-        if ($request->filled('published_at')) {
-            $validateData['status_publikasi'] = 'Scheduled';
+        // Jika status publikasi adalah Scheduled, maka published_at wajib diisi
+        if ($request->status_publikasi === 'Jadwalkan') {
+            $request->validate([
+                'published_at' => 'required|date',
+            ]);
             $validateData['published_at'] = $request->published_at;
+        } elseif ($request->status_publikasi === 'Sekarang') {
+            // Jika statusnya Publish, atur waktu publikasi saat ini
+            $validateData['published_at'] = now();
         } else {
-            $validateData['status_publikasi'] = 'Published';
-            $validateData['published_at'] = now(); // Mengatur ke waktu saat ini
+            // Jika statusnya Draft, kosongkan published_at
+            $validateData['published_at'] = null;
         }
 
         $kabarJemaat->update($validateData);

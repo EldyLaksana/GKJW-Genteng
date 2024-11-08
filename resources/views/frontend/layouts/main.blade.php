@@ -11,6 +11,8 @@
         content="gereja, pelayanan gereja, ibadah, komunitas Kristen, pengajaran Alkitab, kebaktian, doa bersama, pelayanan rohani">
 
     {{-- Favicons --}}
+    <link href="{{ asset('assets/img/logo-gkjw.png') }}" rel="icon">
+    <link href="{{ asset('assets/img/logo-gkjw.png') }}" rel="apple-touch-icon">
 
     {{-- Fonts --}}
     <link href="https://fonts.googleapis.com" rel="preconnect">

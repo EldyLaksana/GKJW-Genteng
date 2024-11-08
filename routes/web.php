@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\BackendController;
+use App\Http\Controllers\CarouselController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\JadwalIbadahController;
 use App\Http\Controllers\KabarJemaatController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MajelisController;
 use App\Http\Controllers\RenunganController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\UserController;
@@ -42,7 +44,11 @@ Route::get('/kabar-jemaat', [FrontendController::class, 'kabar']);
 
 Route::get('/kabar-jemaat/{kabarJemaat:slug}', [FrontendController::class, 'showKabar']);
 
+Route::get('/kabar-jemaat/kategori/{slug}', [FrontendController::class, 'showKategori']);
+
 Route::get('/sejarah', [FrontendController::class, 'sejarah']);
+
+Route::get('/majelis-jemaat', [FrontendController::class, 'majelis']);
 
 Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 
@@ -68,4 +74,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/dashboard/kategori', KategoriController::class);
 
     Route::resource('/dashboard/user', UserController::class);
+
+    Route::resource('/dashboard/majelis', MajelisController::class);
+
+    Route::resource('/dashboard/carousel', CarouselController::class);
 });

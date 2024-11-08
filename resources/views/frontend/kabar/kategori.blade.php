@@ -4,11 +4,12 @@
     <!-- Page Title -->
     <div class="page-title light-background">
         <div class="container">
-            <h1>Kabar Jemaat</h1>
+            <h1>{{ $kategori->kategori }}</h1>
             <nav class="breadcrumbs">
                 <ol>
                     <li><a href="/">Beranda</a></li>
-                    <li class="current">Kabar Jemaat</li>
+                    <li><a href="/kabar-jemaat">Kabar Jemaat</a></li>
+                    <li class="current">Kategori {{ $kategori->kategori }}</li>
                 </ol>
             </nav>
         </div>
@@ -18,14 +19,7 @@
     <section id="blog-posts-2" class="blog-posts-2 section">
 
         <div class="container">
-            <!-- Form Pencarian -->
-            <form action="/kabar-jemaat" method="GET" class="search-form mb-4">
-                <div class="input-group">
-                    <input type="text" name="cari" class="form-control" placeholder="Cari judul kabar jemaat..."
-                        value="{{ request('cari') }}">
-                    <button type="submit" class="btn">Cari</button>
-                </div>
-            </form>
+
             <div class="row gy-5">
 
                 @foreach ($kabarJemaats as $kabarJemaat)

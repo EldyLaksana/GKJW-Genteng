@@ -64,6 +64,24 @@
                             Warta Jemaat
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
+                            href="/dashboard/majelis">
+                            <span class="material-symbols-outlined">
+                                groups
+                            </span>
+                            Majelis
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
+                            href="/dashboard/carousel">
+                            <span class="material-symbols-outlined">
+                                view_carousel
+                            </span>
+                            Carousel
+                        </a>
+                    </li>
                 @endif
                 <hr class="my-3">
                 <li class="nav-item">

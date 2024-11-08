@@ -39,8 +39,7 @@
                                 <ul>
                                     {{-- <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
                                             href="#">Admin</a></li> --}}
-                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i><time
-                                            datetime="{{ $renungan->published_at->toIso8601String() }}">
+                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i><time datetime="">
                                             {{ $renungan->published_at->translatedFormat('d F Y') }}
                                         </time></li>
                                 </ul>
@@ -250,6 +249,19 @@
 
                         </div><!-- End recent post item-->
                     </div><!--/Recent Posts Widget -->
+
+                    {{-- <div class="blog-author-widget widget-item">
+                        <h3 class="widget-title">Bagikan</h3>
+                        <div class="social-links">
+                            <a href="https://facebook.com/sharer/sharer.php?u={{ urlencode(request()->fullUrl()) }}"
+                                target="_blank"><i class="bi bi-facebook"></i></a>
+                            <a href="https://wa.me/?text={{ urlencode(request()->fullUrl()) }}" target="_blank"><i
+                                    class="bi bi-whatsapp"></i></a>
+                            <a href="mailto:?subject={{ urlencode($kabarJemaat->judul) }}&body={{ urlencode(request()->fullUrl()) }}"
+                                target="_blank"><i class="bi bi-envelope"></i></a>
+                        </div>
+
+                    </div><!--/Blog Author Widget --> --}}
 
                     {{-- <!-- Tags Widget -->
                     <div class="tags-widget widget-item">

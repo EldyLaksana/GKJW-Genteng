@@ -27,6 +27,14 @@
                     Tambah</a>
             </div>
             <div class="card-body">
+                <div class="col-lg-3 mb-2">
+                    <form action="{{ route('renungan.index') }}" method="GET" class="input-group">
+                        <input type="text" name="judul" class="form-control" value="{{ request('judul') }}"
+                            placeholder="Cari Judul Renungan">
+                        <button type="submit" class="btn btn-primary">Cari</button>
+                    </form>
+                </div>
+
                 <div class="table-responsive col-lg-12 mb-4">
                     <table class="table table-bordered">
                         <thead class="thead-dark">

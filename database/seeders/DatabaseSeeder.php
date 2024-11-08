@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Kategori;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -33,6 +34,26 @@ class DatabaseSeeder extends Seeder
             'username' => 'test1',
             'isAdmin' => '0',
             'password' => bcrypt('Test1@123'),
+        ]);
+
+        Kategori::create([
+            'kategori' => 'Umum',
+            'slug' => 'umum',
+        ]);
+
+        Kategori::create([
+            'kategori' => 'Anak dan Remaja',
+            'slug' => 'anak-dan-remaja',
+        ]);
+
+        Kategori::create([
+            'kategori' => 'Kesehatan',
+            'slug' => 'kesehatan',
+        ]);
+
+        Kategori::create([
+            'kategori' => 'Ensiklopedia',
+            'slug' => 'ensiklopedia',
         ]);
     }
 }

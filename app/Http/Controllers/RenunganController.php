@@ -15,8 +15,16 @@ class RenunganController extends Controller
      */
     public function index()
     {
+        $renungan = Renungan::query();
+        // dd(request('judul'));
+        if (request('judul')) {
+            $renungan->where('renungans.judul', 'like', '%' . request('judul') . '%');
+        }
+
+        $renungan = $renungan->latest()->paginate(10);
+
         return view('backend.renungan.index', [
-            'renungan' => Renungan::latest()->paginate(10),
+            'renungan' => $renungan,
         ]);
     }
 
@@ -41,8 +49,10 @@ class RenunganController extends Controller
             'sumber_gambar' => 'nullable',
             'renungan' => 'required',
             'sumber' => 'nullable',
+            'status_publikasi' => 'nullable',
             'published_at' => 'nullable|date',
         ]);
+        // return ($validateData);
         // dd($validateData);
         if ($request->file('gambar')) {
             $validateData['gambar'] = $request->file('gambar')->store('gambar-renungan');
@@ -50,13 +60,21 @@ class RenunganController extends Controller
 
         $validateData['excerpt'] = Str::limit(strip_tags($request->renungan), 250, '...');
 
-        if ($request->filled('published_at')) {
-            $validateData['status_publikasi'] = 'Scheduled';
+        // Jika status publikasi adalah Scheduled, maka published_at wajib diisi
+        if ($request->status_publikasi === 'Jadwalkan') {
+            $request->validate([
+                'published_at' => 'required|date',
+            ]);
             $validateData['published_at'] = $request->published_at;
+        } elseif ($request->status_publikasi === 'Sekarang') {
+            // Jika statusnya Publish, atur waktu publikasi saat ini
+            $validateData['published_at'] = now();
         } else {
-            $validateData['status_publikasi'] = 'Published';
-            $validateData['published_at'] = now(); // Mengatur ke waktu saat ini
+            // Jika statusnya Draft, kosongkan published_at
+            $validateData['published_at'] = null;
         }
+
+        // return ($validateData);
 
         Renungan::create($validateData);
 
@@ -107,17 +125,20 @@ class RenunganController extends Controller
             $validateData['gambar'] = $request->file('gambar')->store('gambar-renungan');
         }
 
-        // Menghilangkan &nbsp; dari renungan sebelum mengambil excerpt
-        $renunganContent = str_replace('&nbsp;', ' ', $request->renungan);
-        $validateData['excerpt'] = Str::limit(strip_tags($renunganContent), 250, '...');
+        $validateData['excerpt'] = Str::limit(strip_tags($request->renungan), 250, '...');
 
         // Tentukan status publikasi dan published_at berdasarkan input tanggal
-        if ($request->filled('published_at')) {
-            $validateData['status_publikasi'] = 'Scheduled';
+        if ($request->status_publikasi === 'Jadwalkan') {
+            $request->validate([
+                'published_at' => 'required|date',
+            ]);
             $validateData['published_at'] = $request->published_at;
-        } else {
-            $validateData['status_publikasi'] = 'Published';
+        } elseif ($request->status_publikasi === 'Sekarang') {
+            // Jika statusnya Publish, atur waktu publikasi saat ini
             $validateData['published_at'] = now();
+        } else {
+            // Jika statusnya Draft, kosongkan published_at
+            $validateData['published_at'] = null;
         }
 
         // Update data renungan

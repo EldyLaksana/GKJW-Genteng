@@ -27,12 +27,20 @@
                     Tambah</a>
             </div>
             <div class="card-body">
+                <div class="col-lg-3 mb-2">
+                    <form action="{{ route('kabar-jemaat.index') }}" method="GET" class="input-group">
+                        <input type="text" name="judul" class="form-control" value="{{ request('judul') }}"
+                            placeholder="Cari Judul Kabar Jemaat">
+                        <button type="submit" class="btn btn-primary">Cari</button>
+                    </form>
+                </div>
                 <div class="table-responsive col-lg-12 mb-4">
                     <table class="table table-bordered">
                         <thead class="thead-dark">
                             <tr class="table-primary">
                                 <th style="width: 2cm">No</th>
                                 <th>Judul</th>
+                                <th>Penulis</th>
                                 <th>Status</th>
                                 <th>Published at</th>
                                 <th style="width: 6cm">Menu</th>
@@ -44,13 +52,17 @@
                                     <td>{{ $loop->iteration + ($kabarJemaat->currentPage() - 1) * $kabarJemaat->perPage() }}
                                     </td>
                                     <td>{{ $item->judul }}</td>
+                                    <td>{{ $item->user->name }}</td>
                                     <td>{{ $item->status_publikasi }}</td>
                                     <td>{{ $item->published_at }}</td>
                                     <td>
                                         <a href="/dashboard/kabar-jemaat/{{ $item->slug }}" class="badge bg-success"
                                             style="text-decoration: none"> <i class="fa-solid fa-eye"></i> Show</a>
-                                        <a href="/dashboard/kabar-jemaat/{{ $item->slug }}/edit" class="badge bg-warning"
-                                            style="text-decoration: none"> <i class="fa-solid fa-pen"></i> Edit</a>
+                                        @if (Auth::id() === $item->user_id || auth()->user()->isAdmin === 1)
+                                            <a href="/dashboard/kabar-jemaat/{{ $item->slug }}/edit"
+                                                class="badge bg-warning" style="text-decoration: none"> <i
+                                                    class="fa-solid fa-pen"></i> Edit</a>
+                                        @endif
                                         @if (auth()->user()->isAdmin == 1)
                                             <form action="/dashboard/kabar-jemaat/{{ $item->slug }}" method="POST"
                                                 class="d-inline">

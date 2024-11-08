@@ -4,6 +4,7 @@
         <a href="/" class="logo d-flex align-items-center">
             <!-- Uncomment the line below if you also wish to use an image logo -->
             <!-- <img src="assets/img/logo.png" alt=""> -->
+            <img src="{{ asset('assets/img/logo-gkjw.png') }}" alt="logo-gkjw">
             <h1 class="sitename">GKJW Jemaat Genteng</h1>
         </a>
 
@@ -11,13 +12,16 @@
             <ul>
                 <li><a href="/" class="{{ $judul === 'Beranda' ? 'active' : '' }}">Beranda</a></li>
                 {{-- <li><a href="/">Tentang Kami</a></li> --}}
-                <li class="dropdown"><a href="#"><span>Profil</span> <i
-                            class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <li class="dropdown"><a href="#"
+                        class="{{ in_array($judul, ['Sejarah', 'Majelis Jemaat']) ? 'active' : '' }}"><span>Profil</span>
+                        <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                     <ul>
                         <li><a href="/sejarah" class="{{ $judul === 'Sejarah' ? 'active' : '' }}">Sejarah</a></li>
                         <li><a href="#">Profil Jemaat</a></li>
                         <li><a href="#">Profil Pendeta</a></li>
-                        <li><a href="#">Kemajelisan</a></li>
+                        <li><a href="/majelis-jemaat" class="{{ $judul === 'Majelis Jemaat' ? 'active' : '' }}">Majelis
+                                Jemaat</a>
+                        </li>
                     </ul>
                 </li>
                 <li><a href="/warta-jemaat" class="{{ $judul === 'Warta Jemaat' ? 'active' : '' }}">Warta Jemaat</a>

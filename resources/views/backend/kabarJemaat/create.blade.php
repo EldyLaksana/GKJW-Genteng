@@ -78,14 +78,28 @@
                     @endif
                     <div class="col-lg-6 mb-3">
                         <label for="sumber" class="form-label">Sumber :</label>
-                        <input type="text" class="form-control" placeholder="" name="sumber" id="sumber"
-                            value="{{ old('sumber') }}">
+                        {{-- <input type="text" class="form-control" placeholder="" name="sumber" id="sumber"
+                            value="{{ old('sumber') }}"> --}}
+                        <textarea name="sumber" id="sumber" rows="1" class="form-control">{{ old('sumber') }}</textarea>
                     </div>
                     <div class="col-lg-6 mb-3">
+                        <label for="status_publikasi" class="form-label">Status Publikasi :</label>
+                        <select name="status_publikasi" id="status_publikasi" class="form-control">
+                            <option value="Sekarang" {{ old('status_publikasi') == 'Sekarang' ? 'selected' : '' }}>
+                                Sekarang
+                            </option>
+                            <option value="Jadwalkan" {{ old('status_publikasi') == 'Jadwalkan' ? 'selected' : '' }}>
+                                Jadwalkan</option>
+                            <option value="Draf" {{ old('status_publikasi') == 'Draf' ? 'selected' : '' }}>
+                                Draf
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-lg-6 mb-3" id="published_at_container" style="display: none">
                         <label for="published_at" class="form-label">Tanggal Publikasi :</label>
                         <input type="text" name="published_at" id="published_at" class="form-control"
                             placeholder="Pilih tanggal dan jam" value="{{ old('published_at') }}">
-                        <small class="form-text text-muted">Biarkan kosong untuk mempublikasikan sekarang.</small>
+                        {{-- <small class="form-text text-muted">Biarkan kosong untuk mempublikasikan sekarang.</small> --}}
                     </div>
                 </div>
                 <div class="card-footer d-grid d-lg-flex justify-content-lg-end">
@@ -123,30 +137,31 @@
             }
         };
 
-        flatpickr("#published_at", {
-            enableTime: true,
-            dateFormat: "Y-m-d H:i",
-            time_24hr: true,
-            locale: {
-                firstDayOfWeek: 1 // Set awal minggu ke Senin
+        document.addEventListener('DOMContentLoaded', function() {
+            const statusPublikasi = document.getElementById('status_publikasi');
+            const publishedAtContainer = document.getElementById('published_at_container');
+
+            // Tampilkan atau sembunyikan input published_at saat halaman dimuat
+            togglePublishedAtInput();
+
+            // Event listener untuk perubahan status publikasi
+            statusPublikasi.addEventListener('change', togglePublishedAtInput);
+
+            function togglePublishedAtInput() {
+                if (statusPublikasi.value === 'Jadwalkan') {
+                    publishedAtContainer.style.display = 'block';
+                } else {
+                    publishedAtContainer.style.display = 'none';
+                }
             }
-        });
 
-        document.addEventListener("trix-initialize", () => {
-            // Tambahkan tombol custom untuk embed
-            const toolbar = document.querySelector("trix-toolbar");
-            const buttonHTML =
-                `<button type="button" class="trix-button trix-button--icon" data-trix-action="embed" title="Embed Media">Embed</button>`;
-            toolbar.insertAdjacentHTML("beforeend", buttonHTML);
-
-            // Tangani klik pada tombol embed
-            toolbar.querySelector('[data-trix-action="embed"]').addEventListener("click", () => {
-                const url = prompt("Masukkan URL media yang ingin di-embed:");
-                if (url) {
-                    const embedHTML =
-                        `<iframe src="${url}" width="560" height="315" frameborder="0" allowfullscreen></iframe>`;
-                    const editor = document.getElementById("editor");
-                    editor.editor.insertHTML(embedHTML);
+            // Inisialisasi Flatpickr pada input published_at
+            flatpickr("#published_at", {
+                enableTime: true,
+                dateFormat: "Y-m-d H:i",
+                time_24hr: true,
+                locale: {
+                    firstDayOfWeek: 1 // Set awal minggu ke Senin
                 }
             });
         });

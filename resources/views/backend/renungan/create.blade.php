@@ -61,10 +61,21 @@
                             value="{{ old('sumber') }}">
                     </div>
                     <div class="col-lg-6 mb-3">
+                        <label for="status_publikasi" class="form-label">Status Publikasi :</label>
+                        <select name="status_publikasi" id="status_publikasi" class="form-control">
+                            <option value="Sekarang" {{ old('status_publikasi') == 'Sekarang' ? 'selected' : '' }}>Sekarang
+                            </option>
+                            <option value="Jadwalkan" {{ old('status_publikasi') == 'Jadwalkan' ? 'selected' : '' }}>
+                                Jadwalkan</option>
+                            <option value="Draf" {{ old('status_publikasi') == 'Draf' ? 'selected' : '' }}>Draf
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-lg-6 mb-3" id="published_at_container" style="display: none">
                         <label for="published_at" class="form-label">Tanggal Publikasi :</label>
                         <input type="text" name="published_at" id="published_at" class="form-control"
                             placeholder="Pilih tanggal dan jam" value="{{ old('published_at') }}">
-                        <small class="form-text text-muted">Biarkan kosong untuk mempublikasikan sekarang.</small>
+                        {{-- <small class="form-text text-muted">Biarkan kosong untuk mempublikasikan sekarang.</small> --}}
                     </div>
                 </div>
                 <div class="card-footer d-grid d-lg-flex justify-content-lg-end">
@@ -102,13 +113,30 @@
             }
         };
 
-        flatpickr("#published_at", {
-            enableTime: true,
-            dateFormat: "Y-m-d H:i",
-            time_24hr: true,
-            locale: {
-                firstDayOfWeek: 1 // Set awal minggu ke Senin
+        document.addEventListener('DOMContentLoaded', function() {
+            const stattusPublikasi = document.getElementById('status_publikasi');
+            const publishedAtContainer = document.getElementById('published_at_container');
+
+            togglePublishedAtInput();
+
+            stattusPublikasi.addEventListener('change', togglePublishedAtInput);
+
+            function togglePublishedAtInput() {
+                if (stattusPublikasi.value === 'Jadwalkan') {
+                    publishedAtContainer.style.display = 'block';
+                } else {
+                    publishedAtContainer.style.display = 'none';
+                }
             }
+
+            flatpickr("#published_at", {
+                enableTime: true,
+                dateFormat: "Y-m-d H:i",
+                time_24hr: true,
+                locale: {
+                    firstDayOfWeek: 1 // Set awal minggu ke Senin
+                }
+            });
         });
     </script>
 @endsection
