@@ -30,11 +30,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($majelis as $item)
+                            @foreach ($carousel as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->nama }}</td>
-                                    <td>{{ $item->jabatan }}</td>
+                                    <td><img src="{{ asset('storage/' . $item->carousel) }}" alt="carousel"
+                                            class="img-fluid"></td>
                                     <td><a href="/dashboard/carousel/{{ $item->id }}/edit" class="badge bg-warning"
                                             style="text-decoration: none"> <i class="fa-solid fa-pen"></i> Edit</a>
                                         <form action="/dashboard/carousel/{{ $item->id }}" method="POST"
@@ -48,7 +48,7 @@
                                         </form>
                                     </td>
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Masukan Majelis</h1>
+        <h1 class="h2">Ubah Majelis</h1>
     </div>
 
     <section class="section">
@@ -11,7 +11,8 @@
                 <a href="/dashboard/majelis" type="button" class="btn btn-success"><i class="fa-solid fa-arrow-left"></i>
                     Kembali</a>
             </div>
-            <form action="/dashboard/majelis" method="post" enctype="multipart/form-data">
+            <form action="/dashboard/majelis/{{ $majelis->id }}" method="post" enctype="multipart/form-data">
+                @method('PUT')
                 @csrf
                 <div class="card-body">
                     <div class="mb-3 col-lg-6">
@@ -58,7 +59,7 @@
 
                     <div class="card-footer d-grid d-lg-flex justify-content-lg-end">
                         <button type="submit" class="btn btn-success"><i class="fa-solid fa-circle-plus"></i>
-                            Tambah</button>
+                            Ubah</button>
                     </div>
             </form>
         </div>

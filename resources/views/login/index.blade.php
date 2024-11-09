@@ -33,9 +33,12 @@
                 {{-- <h4>Aplikasi HRIS PT. Ratu Makmur Abadi</h4> --}}
                 <form action="/login" method="POST">
                     @csrf
-                    {{-- <img class="mb-4" src="{{ asset('assets/img/logo.png') }}" alt="" width="100"
-                        height="100"> --}}
-                    <h1 class="h2 mb-4 fw-bold">Selamat Datang di Dashboard Website GKJW Jemaat Genteng</h1>
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                        <img class="mb-4" src="{{ asset('assets/img/logo-gkjw.png') }}" alt="" width="100"
+                            height="100">
+                        <h1 class="h2 mb-4 fw-bold text-center">Selamat Datang di Dashboard Website GKJW Jemaat Genteng
+                        </h1>
+                    </div>
                     <h1 class="h3 mb-3 fw-normal">Silahkan Login</h1>
                     <div class="form-floating">
                         <input type="username" class="form-control" id="username" name="username"

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Carousel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class CarouselController extends Controller
 {
@@ -12,7 +14,12 @@ class CarouselController extends Controller
      */
     public function index()
     {
-        return view('backend.carousel.index');
+        if (Auth::user()->isAdmin !== 1) {
+            return redirect('/dashboard');
+        }
+        return view('backend.carousel.index', [
+            'carousel' => Carousel::all(),
+        ]);
     }
 
     /**
@@ -20,6 +27,9 @@ class CarouselController extends Controller
      */
     public function create()
     {
+        if (Auth::user()->isAdmin !== 1) {
+            return redirect('/dashboard');
+        }
         return view('backend.carousel.create');
     }
 
@@ -35,6 +45,9 @@ class CarouselController extends Controller
         if ($request->file('carousel')) {
             $validateData['carousel'] = $request->file('carousel')->store('foto-carousel');
         }
+
+        Carousel::create($validateData);
+        return redirect()->route('carousel.index')->with('success', 'Carousel berhasil ditambahkan');
     }
 
     /**
@@ -50,7 +63,13 @@ class CarouselController extends Controller
      */
     public function edit(Carousel $carousel)
     {
-        //
+        if (Auth::user()->isAdmin !== 1) {
+            return redirect('/dashboard');
+        }
+
+        return view('backend.carousel.edit', [
+            'carousel' => $carousel,
+        ]);
     }
 
     /**
@@ -58,7 +77,20 @@ class CarouselController extends Controller
      */
     public function update(Request $request, Carousel $carousel)
     {
-        //
+        $validateData = $request->validate([
+            'carousel' => 'image|file|mimes:jpg,jpeg,png|max:5000',
+        ]);
+
+        if ($request->file('carousel')) {
+
+            if ($carousel->carousel) {
+                Storage::delete($carousel->carousel);
+            }
+            $validateData['carousel'] = $request->file('carousel')->store('foto-carousel');
+        }
+
+        $carousel->update($validateData);
+        return redirect()->route('carousel.index')->with('success', 'Carousel berhasil diubah');
     }
 
     /**

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('carousels', function (Blueprint $table) {
             $table->id();
+            $table->string('carousel');
             $table->timestamps();
         });
     }

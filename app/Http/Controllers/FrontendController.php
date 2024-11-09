@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carousel;
 use App\Models\JadwalIbadah;
 use App\Models\KabarJemaat;
 use App\Models\Kategori;
@@ -38,11 +39,13 @@ class FrontendController extends Controller
             $kabarJemaat->published_at = Carbon::parse($kabarJemaat->published_at);
         });
 
+
         return view('frontend.index', [
             'judul' => 'Beranda',
             'jadwal' => $jadwalIbadah,
             'renungans' => $renungans,
             'kabarJemaats' => $kabarJemaats,
+            'carousel' => Carousel::all(),
         ]);
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Majelis;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class MajelisController extends Controller
 {
@@ -80,9 +81,27 @@ class MajelisController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Majelis $majelis)
+    public function update(Request $request, Majelis $majelis, $id)
     {
-        //
+        $majelis = Majelis::findOrFail($id);
+        // return $majelis;
+        $validateData = $request->validate([
+            'nama' => 'required',
+            'jabatan' => 'required',
+            'foto' => 'image|file|mimes:jpg,jpeg,png|max:5000',
+        ]);
+
+        if ($request->file('foto')) {
+            // Hapus foto lama jika ada
+            if ($majelis->foto && Storage::exists($majelis->foto)) {
+                Storage::delete($majelis->foto);
+            }
+            // Simpan foto baru dan tambahkan ke data yang akan diupdate
+            $validateData['foto'] = $request->file('foto')->store('foto-majelis');
+        }
+
+        $majelis->update($validateData);
+        return redirect()->route('majelis.index')->with('success', 'Majelis berhasil diubah');
     }
 
     /**

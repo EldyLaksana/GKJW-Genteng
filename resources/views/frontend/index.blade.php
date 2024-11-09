@@ -9,15 +9,12 @@
                 <div class="col-lg-7 mb-5 mb-lg-0 order-lg-2" data-aos="fade-up" data-aos-delay="400">
                     <div id="carousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="assets/img/img_h_6.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/img/img_h_7.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/img/img_h_8.jpg" class="d-block w-100" alt="...">
-                            </div>
+                            @foreach ($carousel as $index => $item)
+                                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                    <img src="{{ asset('storage/' . $item->carousel) }}" class="d-block w-100"
+                                        alt="carousel">
+                                </div>
+                            @endforeach
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carousel"
                             data-bs-slide="prev">

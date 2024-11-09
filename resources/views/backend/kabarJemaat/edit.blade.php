@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Edit Kabar Jemaat</h1>
+        <h1 class="h2">Ubah Kabar Jemaat</h1>
     </div>
 
     <section class="section">
@@ -31,7 +31,7 @@
                         <label for="slug" class="form-label">Slug :</label>
                         <input type="text" name="slug" id="slug"
                             class="form-control @error('slug') is-invalid @enderror"
-                            value="{{ old('slug', $kabarJemaat->slug) }}" required>
+                            value="{{ old('slug', $kabarJemaat->slug) }}" required readonly>
                         @error('slug')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -116,7 +116,7 @@
                 </div>
                 <div class="card-footer d-grid d-lg-flex justify-content-lg-end">
                     <button type="submit" class="btn btn-success"><i class="fa-solid fa-pen"></i>
-                        Edit</button>
+                        Ubah</button>
                 </div>
             </form>
         </div>
