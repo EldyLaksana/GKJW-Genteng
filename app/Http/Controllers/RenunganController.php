@@ -117,7 +117,7 @@ class RenunganController extends Controller
             'published_at' => 'nullable|date',
         ]);
 
-        if ($request->file('gambar')) {
+        if ($request->hasFile('gambar')) {
             // Jika ada file gambar baru, simpan file baru dan hapus yang lama
             if ($renungan->gambar) {
                 Storage::delete($renungan->gambar);

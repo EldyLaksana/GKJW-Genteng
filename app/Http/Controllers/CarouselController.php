@@ -81,7 +81,7 @@ class CarouselController extends Controller
             'carousel' => 'image|file|mimes:jpg,jpeg,png|max:5000',
         ]);
 
-        if ($request->file('carousel')) {
+        if ($request->hasFile('carousel')) {
 
             if ($carousel->carousel) {
                 Storage::delete($carousel->carousel);

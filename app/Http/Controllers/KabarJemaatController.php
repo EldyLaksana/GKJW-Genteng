@@ -126,7 +126,7 @@ class KabarJemaatController extends Controller
             'published_at' => 'nullable|date',
         ]);
 
-        if ($request->file('gambar')) {
+        if ($request->hasFile('gambar')) {
 
             if ($kabarJemaat->gambar) {
                 Storage::delete($kabarJemaat->gambar);

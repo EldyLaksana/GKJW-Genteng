@@ -91,9 +91,9 @@ class MajelisController extends Controller
             'foto' => 'image|file|mimes:jpg,jpeg,png|max:5000',
         ]);
 
-        if ($request->file('foto')) {
+        if ($request->hasFile('foto')) {
             // Hapus foto lama jika ada
-            if ($majelis->foto && Storage::exists($majelis->foto)) {
+            if ($majelis->foto) {
                 Storage::delete($majelis->foto);
             }
             // Simpan foto baru dan tambahkan ke data yang akan diupdate

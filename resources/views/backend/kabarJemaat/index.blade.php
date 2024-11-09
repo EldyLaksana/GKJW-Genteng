@@ -43,6 +43,7 @@
                                 <th>Penulis</th>
                                 <th>Status</th>
                                 <th>Published at</th>
+                                <th>Pembaca</th>
                                 <th style="width: 6cm">Menu</th>
                             </tr>
                         </thead>
@@ -55,6 +56,7 @@
                                     <td>{{ $item->user->name }}</td>
                                     <td>{{ $item->status_publikasi }}</td>
                                     <td>{{ $item->published_at }}</td>
+                                    <td>{{ $item->view_count }}</td>
                                     <td>
                                         <a href="/dashboard/kabar-jemaat/{{ $item->slug }}" class="badge bg-success"
                                             style="text-decoration: none"> <i class="fa-solid fa-eye"></i> Show</a>
