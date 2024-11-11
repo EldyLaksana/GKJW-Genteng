@@ -236,7 +236,7 @@ class FrontendController extends Controller
         });
 
         return view('frontend.kabar.kategori', [
-            'title' => 'Kategori "Kabar Jemaat" - GKJW Jemaat Genteng',
+            'title' => 'Kategori - ' . $kategori->kategori . ' - GKJW Jemaat Genteng',
             'judul' => 'kabarJemaat',
             'kategori' => $kategori,
             'kabarJemaats' => $kabarJemaats,

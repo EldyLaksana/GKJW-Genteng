@@ -36,7 +36,7 @@
                         <article>
 
                             <div class="post-img">
-                                <a href="kabar-jemaat/{{ $kabarJemaat->slug }}" class="thumb d-block">
+                                <a href="/kabar-jemaat/{{ $kabarJemaat->slug }}" class="thumb d-block">
                                     <img src="{{ asset($kabarJemaat->gambar ? 'storage/' . $kabarJemaat->gambar : 'assets/img/default.jpg') }}"
                                         alt="{{ $kabarJemaat->judul }}" class="img-fluid rounded">
                                 </a>
