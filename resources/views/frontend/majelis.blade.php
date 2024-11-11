@@ -1,5 +1,7 @@
 @extends('frontend.layouts.main')
 
+@section('title', $title)
+
 @section('container')
     <div class="page-title light-background">
         <div class="container">

@@ -41,6 +41,7 @@ class FrontendController extends Controller
 
 
         return view('frontend.index', [
+            'title' => 'Web Resmi GKJW Jemaat Genteng',
             'judul' => 'Beranda',
             'jadwal' => $jadwalIbadah,
             'renungans' => $renungans,
@@ -55,6 +56,7 @@ class FrontendController extends Controller
 
         // return $warta;
         return view('frontend.warta', [
+            'title' => 'Warta Jemaat - GKJW Jemaat Genteng',
             'judul' => 'Warta Jemaat',
             'warta' => $warta,
         ]);
@@ -63,6 +65,7 @@ class FrontendController extends Controller
     public function kontak()
     {
         return view('frontend.kontak', [
+            'title' => 'Kontak - GKJW Jemaat Genteng',
             'judul' => 'Kontak',
         ]);
     }
@@ -93,6 +96,7 @@ class FrontendController extends Controller
         });
 
         return view('frontend.renungan.renungan', [
+            'title' => 'Renungan - GKJW Jemaat Genteng',
             'judul' => 'Renungan',
             'renungans' => $renungans,
         ]);
@@ -128,6 +132,7 @@ class FrontendController extends Controller
         }
 
         return view('frontend.renungan.show', [
+            'title' => $renungan->judul . ' - GKJW Genteng',
             'judul' => 'Renungan',
             'renungan' => $renungan,
             'renunganLain' => $renunganLain,
@@ -161,6 +166,7 @@ class FrontendController extends Controller
         });
 
         return view('frontend.kabar.kabar', [
+            'title' => 'Kabar Jemaat - GKJW Jemaat Genteng',
             'judul' => 'Kabar Jemaat',
             'kabarJemaats' => $kabarJemaats,
         ]);
@@ -196,6 +202,7 @@ class FrontendController extends Controller
         }
 
         return view('frontend.kabar.show', [
+            'title' => $kabarJemaat->judul . ' - GKJW Genteng',
             'judul' => 'Kabar Jemaat',
             'kabarJemaat' => $kabarJemaat,
             'kabarLain' => $kabarLain,
@@ -207,16 +214,29 @@ class FrontendController extends Controller
     {
         $kategori = Kategori::where('slug', $slug)->firstOrFail();
 
-        $kabarJemaats = KabarJemaat::with(['kategori', 'user'])
+        $cari = request()->query('cari');
+
+        $kabarJemaats = KabarJemaat::with(['user', 'kategori'])
             ->where('kategori_id', $kategori->id)
+            ->where(function ($query) {
+                $query->where('status_publikasi', 'Sekarang')
+                    ->orWhere(function ($query) {
+                        $query->where('status_publikasi', 'Jadwalkan')
+                            ->where('published_at', '<=', now());
+                    });
+            })
+            ->when($cari, function ($query, $cari) {
+                $query->where('judul', 'like', '%' . $cari . '%');
+            })
             ->latest()
-            ->paginate(10);
+            ->paginate(9);
 
         $kabarJemaats->each(function ($kabarJemaat) {
             $kabarJemaat->published_at = Carbon::parse($kabarJemaat->published_at);
         });
 
         return view('frontend.kabar.kategori', [
+            'title' => 'Kategori "Kabar Jemaat" - GKJW Jemaat Genteng',
             'judul' => 'kabarJemaat',
             'kategori' => $kategori,
             'kabarJemaats' => $kabarJemaats,
@@ -227,6 +247,7 @@ class FrontendController extends Controller
     {
         return view('frontend.sejarah', [
             'judul' => 'Sejarah',
+            'title' => 'Sejarah - GKJW Jemaat Genteng',
         ]);
     }
 
@@ -234,6 +255,7 @@ class FrontendController extends Controller
     {
         return view('frontend.majelis', [
             'judul' => 'Majelis Jemaat',
+            'title' => 'Majelis Jemaat - GKJW Jemaat Genteng',
             'majelis' => Majelis::all(),
         ]);
     }

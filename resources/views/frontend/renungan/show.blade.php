@@ -1,5 +1,7 @@
 @extends('frontend.layouts.main')
 
+@section('title', $title)
+
 @section('container')
     <!-- Page Title -->
     <div class="page-title light-background">
@@ -29,7 +31,8 @@
                             <div class="post-img">
                                 <img src="{{ asset($renungan->gambar ? 'storage/' . $renungan->gambar : 'assets/img/default.jpg') }}"
                                     alt="{{ $renungan->judul }}" class="img-fluid rounded">
-
+                                <p class="text-muted mt-2" style="font-size: 0.8em; padding-left: 30px;">
+                                    Sumber gambar: {{ $renungan->sumber_gambar ?? 'Dokumentasi Tim Multimedia' }}
                             </div>
 
                             <h2 class="title">{{ $renungan->judul }}

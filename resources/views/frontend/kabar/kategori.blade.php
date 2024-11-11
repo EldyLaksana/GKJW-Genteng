@@ -1,5 +1,7 @@
 @extends('frontend.layouts.main')
 
+@section('title', $title)
+
 @section('container')
     <!-- Page Title -->
     <div class="page-title light-background">
@@ -19,7 +21,14 @@
     <section id="blog-posts-2" class="blog-posts-2 section">
 
         <div class="container">
-
+            <!-- Form Pencarian -->
+            <form action="/kabar-jemaat/kategori/{{ $kategori->slug }}" method="GET" class="search-form mb-4">
+                <div class="input-group">
+                    <input type="text" name="cari" class="form-control" placeholder="Cari judul kabar jemaat..."
+                        value="{{ request('cari') }}">
+                    <button type="submit" class="btn">Cari</button>
+                </div>
+            </form>
             <div class="row gy-5">
 
                 @foreach ($kabarJemaats as $kabarJemaat)

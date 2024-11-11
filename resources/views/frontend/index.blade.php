@@ -1,5 +1,7 @@
 @extends('frontend.layouts.main')
 
+@section('title', $title)
+
 @section('container')
     {{-- <h1>Hello World</h1> --}}
     <section id="about" class="about section">

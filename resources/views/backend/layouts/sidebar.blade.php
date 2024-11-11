@@ -84,15 +84,7 @@
                     </li>
                 @endif
                 <hr class="my-3">
-                <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
-                        href="/dashboard/renungan">
-                        <span class="material-symbols-outlined">
-                            docs
-                        </span>
-                        Renungan
-                    </a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
                         href="/dashboard/kabar-jemaat">
@@ -103,6 +95,15 @@
                     </a>
                 </li>
                 @if (Auth::user()->isAdmin === 1)
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
+                            href="/dashboard/renungan">
+                            <span class="material-symbols-outlined">
+                                docs
+                            </span>
+                            Renungan
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
                             href="/dashboard/kategori">

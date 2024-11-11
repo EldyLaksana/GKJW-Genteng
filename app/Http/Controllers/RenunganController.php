@@ -15,6 +15,9 @@ class RenunganController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->isAdmin !== 1) {
+            return redirect('/dashboard');
+        }
         $renungan = Renungan::query();
         // dd(request('judul'));
         if (request('judul')) {
@@ -33,6 +36,9 @@ class RenunganController extends Controller
      */
     public function create()
     {
+        if (Auth::user()->isAdmin !== 1) {
+            return redirect('/dashboard');
+        }
         return view('backend.renungan.create');
     }
 
@@ -86,6 +92,9 @@ class RenunganController extends Controller
      */
     public function show(Renungan $renungan)
     {
+        if (Auth::user()->isAdmin !== 1) {
+            return redirect('/dashboard');
+        }
         // return $renungan;
         return view('backend.renungan.show', [
             'renungan' => $renungan,
@@ -97,6 +106,9 @@ class RenunganController extends Controller
      */
     public function edit(Renungan $renungan)
     {
+        if (Auth::user()->isAdmin !== 1) {
+            return redirect('/dashboard');
+        }
         return view('backend.renungan.edit', [
             'renungan' => $renungan,
         ]);
