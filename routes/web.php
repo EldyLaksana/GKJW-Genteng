@@ -50,6 +50,8 @@ Route::get('/sejarah', [FrontendController::class, 'sejarah']);
 
 Route::get('/majelis-jemaat', [FrontendController::class, 'majelis']);
 
+Route::get('/profil-jemaat', [FrontendController::class, 'profilJemaat']);
+
 Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 
 // Login
