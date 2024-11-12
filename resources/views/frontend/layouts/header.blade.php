@@ -13,11 +13,12 @@
                 <li><a href="/" class="{{ $judul === 'Beranda' ? 'active' : '' }}">Beranda</a></li>
                 {{-- <li><a href="/">Tentang Kami</a></li> --}}
                 <li class="dropdown"><a href="#"
-                        class="{{ in_array($judul, ['Sejarah', 'Majelis Jemaat']) ? 'active' : '' }}"><span>Profil</span>
+                        class="{{ in_array($judul, ['Sejarah', 'Majelis Jemaat', 'Profil Jemaat']) ? 'active' : '' }}"><span>Profil</span>
                         <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                     <ul>
                         <li><a href="/sejarah" class="{{ $judul === 'Sejarah' ? 'active' : '' }}">Sejarah</a></li>
-                        <li><a href="#">Profil Jemaat</a></li>
+                        <li><a href="/profil-jemaat" class="{{ $judul === 'Profil Jemaat' ? 'active' : '' }}">Profil
+                                Jemaat</a></li>
                         <li><a href="#">Profil Pendeta</a></li>
                         <li><a href="/majelis-jemaat" class="{{ $judul === 'Majelis Jemaat' ? 'active' : '' }}">Majelis
                                 Jemaat</a>
