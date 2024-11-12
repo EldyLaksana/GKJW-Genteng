@@ -126,6 +126,7 @@ class RenunganController extends Controller
             'sumber_gambar' => 'nullable',
             'renungan' => 'required',
             'sumber' => 'nullable',
+            'status_publikasi' => 'nullable',
             'published_at' => 'nullable|date',
         ]);
 
