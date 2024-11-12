@@ -97,8 +97,8 @@
         </div><!-- End Section Title -->
         <div class="container">
 
-            <div class="row gy-4">
-                @foreach ($renungans as $renungan)
+            <div class="row gy-4" id="renunganContainer">
+                @foreach ($renungans as $index => $renungan)
                     <div class="col-md-6 col-lg-4">
                         <div class="post-entry" data-aos="fade-up" data-aos-delay="100">
                             <a href="renungan/{{ $renungan->slug }}" class="thumb d-block">
@@ -190,9 +190,9 @@
         </div><!-- End Section Title -->
         <div class="container">
 
-            <div class="row gy-4">
-                @foreach ($kabarJemaats as $kabarJemaat)
-                    <div class="col-md-6 col-lg-4">
+            <div class="row gy-4" id="kabarJemaatContainer">
+                @foreach ($kabarJemaats as $index => $kabarJemaat)
+                    <div class="col-md-6 col-lg-4 kabarJemaat-item" data-index="{{ $index }}">
                         <div class="post-entry" data-aos="fade-up" data-aos-delay="100">
                             <a href="kabar-jemaat/{{ $kabarJemaat->slug }}" class="thumb d-block">
                                 <img src="{{ asset($kabarJemaat->gambar ? 'storage/' . $kabarJemaat->gambar : 'assets/img/default.jpg') }}"
@@ -226,3 +226,61 @@
         </div>
     </section><!-- /Blog Posts Section -->
 @endsection
+
+<script>
+    function displayKabarJemaat() {
+        const screenWidth = window.innerWidth; // Ukuran layar saat ini
+        const items = document.querySelectorAll('.kabarJemaat-item');
+
+        let itemsToShow = 1; // Default menampilkan 1 item untuk layar di bawah 768px
+        if (screenWidth >= 768 && screenWidth < 1024) {
+            itemsToShow = 2; // Menampilkan 2 item untuk layar antara 768px dan 1024px
+        } else if (screenWidth >= 1024) {
+            itemsToShow = 3; // Menampilkan 3 item untuk layar di atas 1024px
+        }
+
+        // Menampilkan item sesuai dengan jumlah yang ditentukan
+        items.forEach((item, index) => {
+            if (index < itemsToShow) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    // Tampilkan data sesuai ukuran layar saat halaman pertama kali dimuat
+    displayKabarJemaat();
+
+    // Periksa kembali ketika ukuran layar berubah
+    window.addEventListener('resize', displayKabarJemaat);
+
+
+    function displayRenungan() {
+        const screenWidth = window.innerWidth;
+        const items = document.querySelectorAll('.renungan-item');
+
+        // Menentukan jumlah item yang ditampilkan berdasarkan ukuran layar
+        let itemsToShow = 1; // Default 1 item di bawah 768px
+        if (screenWidth >= 768 && screenWidth < 1024) {
+            itemsToShow = 2; // 2 item untuk ukuran layar antara 768px dan 1024px
+        } else if (screenWidth >= 1024) {
+            itemsToShow = 3; // 3 item untuk ukuran layar di atas 1024px
+        }
+
+        // Menampilkan sesuai dengan jumlah yang ditentukan
+        items.forEach((item, index) => {
+            if (index < itemsToShow) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    // Panggil fungsi untuk pertama kali
+    displayRenungan();
+
+    // Menanggapi perubahan ukuran layar
+    window.addEventListener('resize', displayRenungan);
+</script>
