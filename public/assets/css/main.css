@@ -995,6 +995,23 @@ section,
   color: color-mix(in srgb, var(--default-color), transparent 25%);
 }
 
+@media (max-width: 768px) {
+  /* Sembunyikan semua post-entry pada layar kecil */
+  .blog-posts .post-entry {
+      display: none;
+  }
+
+  /* Tampilkan hanya entri pertama di layar kecil */
+  .blog-posts .post-entry:nth-child(1) {
+      display: block;
+  }
+
+  /* Sembunyikan pagination di layar kecil */
+  .blog-pagination {
+      display: none;
+  }
+}
+
 .pagination {
   display: flex;
   list-style: none;
