@@ -66,8 +66,8 @@
                     <div class="col-md-6">
                         <h5>Kabar Jemaat - Pembaca Terbanyak</h5>
                         <table class="table table-bordered">
-                            <thead>
-                                <tr>
+                            <thead class="thead-dark">
+                                <tr class="table-primary">
                                     <th>Judul</th>
                                     <th>Jumlah Pembaca</th>
                                 </tr>
@@ -88,8 +88,8 @@
                         <div class="col-md-6">
                             <h5>Renungan - Pembaca Terbanyak</h5>
                             <table class="table table-bordered">
-                                <thead>
-                                    <tr>
+                                <thead class="thead-dark">
+                                    <tr class="table-primary">
                                         <th>Judul</th>
                                         <th>Jumlah Pembaca</th>
                                     </tr>
