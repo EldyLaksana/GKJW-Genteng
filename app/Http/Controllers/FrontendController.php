@@ -259,4 +259,12 @@ class FrontendController extends Controller
             'majelis' => Majelis::all(),
         ]);
     }
+
+    public function profilJemaat()
+    {
+        return view('frontend.profil-jemaat', [
+            'judul' => 'Profil Jemaat',
+            'title' => 'Profil Jemaat - GKJW Jemaat Genteng',
+        ]);
+    }
 }
