@@ -11,8 +11,8 @@ class SitemapController extends Controller
     public function index()
     {
         // Ambil semua renungan dan kabar jemaat yang dipublikasikan
-        $renungans = Renungan::where('status_publikasi', 'Published')->get();
-        $kabarJemaats = KabarJemaat::where('status_publikasi', 'Published')->get();
+        $renungans = Renungan::where('status_publikasi', 'Sekarang')->get();
+        $kabarJemaats = KabarJemaat::where('status_publikasi', 'Sekarang')->get();
 
         // Kembalikan tampilan sitemap dengan header XML
         return response()->view('sitemap', compact('renungans', 'kabarJemaats'))
