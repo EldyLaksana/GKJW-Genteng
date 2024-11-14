@@ -41,15 +41,15 @@
                             <i class="bi bi-envelope flex-shrink-0"></i>
                             <div>
                                 <h4>Email:</h4>
-                                <p>info@example.com</p>
+                                <p>admin@gkjwgenteng.org</p>
                             </div>
                         </div><!-- End Info Item -->
 
                         <div class="info-item d-flex">
                             <i class="bi bi-phone flex-shrink-0"></i>
                             <div>
-                                <h4>Call:</h4>
-                                <p>+1 5589 55488 55</p>
+                                <h4>Telepon:</h4>
+                                <p>+6281234567890</p>
                             </div>
                         </div><!-- End Info Item -->
 
@@ -57,12 +57,14 @@
 
                 </div>
 
-                <div class="col-lg-8">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d348.90569116290396!2d114.1459741546683!3d-8.360546668522874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd155000a5b14e1%3A0xa8a123f9560c82ff!2sGKJW%20Jemaat%20Genteng!5e0!3m2!1sid!2sid!4v1729236170350!5m2!1sid!2sid"
-                        width="900" height="450" style="border:0;" allowfullscreen=""
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div><!-- End Contact Form -->
+                <div class="col-lg-8 col-12">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d348.90569116290396!2d114.1459741546683!3d-8.360546668522874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd155000a5b14e1%3A0xa8a123f9560c82ff!2sGKJW%20Jemaat%20Genteng!5e0!3m2!1sid!2sid!4v1729236170350!5m2!1sid!2sid"
+                            width="100%" height="450" style="border:0;" allowfullscreen=""
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
 
             </div>
 
