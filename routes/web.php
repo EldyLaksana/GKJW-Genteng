@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BackendController;
+use App\Http\Controllers\Carousel2Controller;
 use App\Http\Controllers\CarouselController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
@@ -80,4 +81,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/dashboard/majelis', MajelisController::class);
 
     Route::resource('/dashboard/carousel', CarouselController::class);
+
+    Route::resource('/dashboard/carousel2', Carousel2Controller::class);
 });
