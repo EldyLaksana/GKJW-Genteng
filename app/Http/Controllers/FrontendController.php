@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carousel;
+use App\Models\Carousel2;
 use App\Models\JadwalIbadah;
 use App\Models\KabarJemaat;
 use App\Models\Kategori;
@@ -114,7 +115,7 @@ class FrontendController extends Controller
                     });
             })
             ->orderBy('published_at', 'desc')
-            ->take(5)
+            ->take(3)
             ->get();
 
         $renunganLain->each(function ($renungan) {
@@ -184,7 +185,7 @@ class FrontendController extends Controller
                     });
             })
             ->orderBy('published_at', 'desc')
-            ->take(5)
+            ->take(3)
             ->get();
 
         $kabarLain->each(function ($kabarJemaat) {
@@ -262,9 +263,12 @@ class FrontendController extends Controller
 
     public function profilJemaat()
     {
+        $jadwalIbadah = JadwalIbadah::all();
         return view('frontend.profil-jemaat', [
             'judul' => 'Profil Jemaat',
             'title' => 'Profil Jemaat - GKJW Jemaat Genteng',
+            'jadwal' => $jadwalIbadah,
+            'carousel' => Carousel2::all(),
         ]);
     }
 }
