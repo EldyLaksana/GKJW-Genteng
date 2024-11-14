@@ -98,6 +98,17 @@ class CarouselController extends Controller
      */
     public function destroy(Carousel $carousel)
     {
-        //
+        // return $carousel;
+        if (Auth::user()->isAdmin !== 1) {
+            return redirect('/dashboard');
+        }
+
+        if ($carousel->carousel) {
+            Storage::delete($carousel->carousel);
+        }
+
+        Carousel::destroy($carousel->id);
+
+        return redirect()->route('carousel.index')->with('danger', 'Carousel berhasil dihapus');
     }
 }
