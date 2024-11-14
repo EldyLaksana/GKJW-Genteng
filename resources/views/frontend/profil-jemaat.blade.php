@@ -6,7 +6,7 @@
     <!-- Page Title -->
     <div class="page-title light-background">
         <div class="container">
-            <h1>Sejarah</h1>
+            <h1>Profil Jemaat</h1>
             <nav class="breadcrumbs">
                 <ol>
                     <li><a href="/">Beranda</a></li>
@@ -21,10 +21,30 @@
             <div class="content">
                 <div class="row justify-content-center mb-4">
                     <!-- Kolom gambar (urutan pertama, gambar di atas teks) -->
-                    <div class="col-lg-10 col-md-10 order-1 mb-4">
+                    <div class="col-lg-9 col-md-10 order-1 mb-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="img-wrap text-center text-md-left" data-aos="fade-up" data-aos-delay="100">
-                            <div class="img">
+                            {{-- <div class="img">
                                 <img src="assets/img/img_h_3.jpg" alt="circle image" class="img-fluid">
+                            </div> --}}
+                            <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    @foreach ($carousel as $index => $item)
+                                        <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                            <img src="{{ asset('storage/' . $item->carousel) }}" class="d-block w-100"
+                                                alt="carousel">
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carousel"
+                                    data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carousel"
+                                    data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -36,18 +56,52 @@
                                 Profil GKJW Jemaat Genteng
                             </h2>
 
-                            <p><strong>Nama Gereja:</strong> Gereja Kristen Jawa Wetan (GKJW) Jemaat Genteng</p>
-                            <p><strong>Alamat:</strong> [Alamat gereja]</p>
-                            <p><strong>Kontak:</strong> [Nomor telepon/email]</p>
-                            <p><strong>Website:</strong> [URL website jika ada]</p>
-                            <p><strong>Jumlah Jemaat:</strong> [Jumlah jemaat]</p>
+                            <p><strong>Alamat:</strong> Jl. Kelud no. 7, Genteng Kulon, Genteng, Banyuwangi, 68465</p>
+                            <p><strong>Kontak:</strong> 081234567890</p>
+                            <p><strong>Website:</strong> gkjwgenteng.or.id</p>
 
-                            <h2 class="content-title text-start">Kegiatan Utama</h2>
-                            <ul>
-                                <li><strong>Ibadah Minggu:</strong> Ibadah rutin setiap Minggu untuk seluruh jemaat.</li>
-                                <li><strong>Sekolah Minggu:</strong> Pendidikan Kristen untuk anak-anak.</li>
-                                <li><strong>Persekutuan Doa:</strong> Kegiatan doa bersama untuk memperdalam iman.</li>
-                            </ul>
+                            <br>
+
+                            <h2 class="content-title text-start">
+                                Pelayanan GKJW Jemaat Genteng
+                            </h2>
+
+                            <p>GKJW jemaat Genteng memiliki jemaat sebanyak 150 orang. GKJW Jemaat Genteng memiliki 2
+                                pepanthan yaitu Pepanthan Parastembok dan Pepanthan Jambewangi. GKJW Jemaat Genteng masuk
+                                dalam Majelis Daerah Besuki Timur</p>
+
+                            <br>
+
+                            <h2 class="content-title text-start">Jadwal Kegiatan Gereja</h2>
+                            <div class="row justify-content-center">
+                                <div class="table-responsive col-lg-10 mb-4">
+                                    {{-- <h2 class="text-center mb-3">Jadwal Kegiatan Gereja</h2> --}}
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">No</th>
+                                                <th scope="col">Kegiatan</th>
+                                                <th scope="col">Hari</th>
+                                                <th scope="col">Jam</th>
+                                                <th scope="col">Tempat</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($jadwal as $item)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $item->kegiatan }}</td>
+                                                    <td>{{ $item->hari }}</td>
+                                                    <td>{{ $item->jam }}</td>
+                                                    <td>{{ $item->tempat }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <br>
 
                             <h2 class="content-title text-start">Komisi Pelayanan</h2>
                             <ul>
@@ -60,9 +114,6 @@
                                     jemaat.</li>
                             </ul>
 
-                            <h2 class="content-title text-start">Pelayanan Sosial</h2>
-                            <p>Gereja aktif dalam berbagai kegiatan bakti sosial dan membantu masyarakat sekitar melalui
-                                program bantuan dan pemberdayaan.</p>
                         </div>
                     </div>
                 </div>
