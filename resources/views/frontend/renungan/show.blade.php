@@ -32,7 +32,7 @@
                                 <img src="{{ asset($renungan->gambar ? 'storage/' . $renungan->gambar : 'assets/img/default.jpg') }}"
                                     alt="{{ $renungan->judul }}" class="img-fluid rounded">
                                 <p class="text-muted mt-2" style="font-size: 0.8em; padding-left: 30px;">
-                                    Sumber gambar: {{ $renungan->sumber_gambar ?? 'Dokumentasi Tim Multimedia' }}
+                                    {{ $renungan->sumber_gambar ?? 'Dokumentasi' }}
                             </div>
 
                             <h2 class="title">{{ $renungan->judul }}
@@ -245,6 +245,10 @@
                         <div class="post-item">
                             @foreach ($renunganLain as $renungan)
                                 <h4><a href="/renungan/{{ $renungan->slug }}">{{ $renungan->judul }}</a></h4>
+                                <a href="/renungan/{{ $renungan->slug }}" class="thumb d-block">
+                                    <img src="{{ asset($renungan->gambar ? 'storage/' . $renungan->gambar : 'assets/img/default.jpg') }}"
+                                        alt="{{ $renungan->judul }}" class="img-fluid rounded">
+                                </a>
                                 <time datetime="{{ $renungan->published_at->toIso8601String() }}">
                                     {{ $renungan->published_at->translatedFormat('d F Y') }}
                                 </time>
