@@ -19,7 +19,7 @@
                         <li><a href="/sejarah" class="{{ $judul === 'Sejarah' ? 'active' : '' }}">Sejarah</a></li>
                         <li><a href="/profil-jemaat" class="{{ $judul === 'Profil Jemaat' ? 'active' : '' }}">Profil
                                 Jemaat</a></li>
-                        <li><a href="#">Profil Pendeta</a></li>
+                        {{-- <li><a href="#">Profil Pendeta</a></li> --}}
                         <li><a href="/majelis-jemaat" class="{{ $judul === 'Majelis Jemaat' ? 'active' : '' }}">Majelis
                                 Jemaat</a>
                         </li>
