@@ -82,6 +82,15 @@
                             Carousel
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
+                            href="/dashboard/carousel2">
+                            <span class="material-symbols-outlined">
+                                view_carousel
+                            </span>
+                            Carousel 2
+                        </a>
+                    </li>
                 @endif
                 <hr class="my-3">
 
