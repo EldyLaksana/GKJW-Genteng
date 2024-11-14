@@ -83,3 +83,9 @@
         </div>
     </section>
 @endsection
+
+<script>
+    setInterval(function() {
+        location.reload();
+    }, 30000); // Refresh setiap 30 detik
+</script>
