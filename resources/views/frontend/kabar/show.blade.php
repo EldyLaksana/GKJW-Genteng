@@ -32,7 +32,7 @@
                                 <img src="{{ asset($kabarJemaat->gambar ? 'storage/' . $kabarJemaat->gambar : 'assets/img/default.jpg') }}"
                                     alt="{{ $kabarJemaat->judul }}" class="img-fluid rounded">
                                 <p class="text-muted mt-2" style="font-size: 0.8em; padding-left: 30px;">
-                                    Sumber gambar: {{ $kabarJemaat->sumber_gambar ?? 'Dokumentasi Tim Multimedia' }}
+                                    {{ $kabarJemaat->sumber_gambar ?? 'Dokumentasi' }}
                                 </p>
                             </div>
 
@@ -265,7 +265,12 @@
                         <div class="post-item">
                             @foreach ($kabarLain as $kabar)
                                 <h4><a href="/kabar-jemaat/{{ $kabar->slug }}">{{ $kabar->judul }}</a></h4>
-                                <time datetime="{{ $kabar->published_at->toIso8601String() }}">
+                                <a href="/kabar-jemaat/{{ $kabar->slug }}" class="thumb d-block">
+                                    <img src="{{ asset($kabar->gambar ? 'storage/' . $kabar->gambar : 'assets/img/default.jpg') }}"
+                                        alt="{{ $kabar->judul }}" class="img-fluid rounded">
+                                </a>
+                                <time datetime="{{ $kabar->published_at->toIso8601String() }}"
+                                    style="margin-bottom: 10px;">
                                     {{ $kabar->published_at->translatedFormat('d F Y') }}
                                 </time>
                             @endforeach
