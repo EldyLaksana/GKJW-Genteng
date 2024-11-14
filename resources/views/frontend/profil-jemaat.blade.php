@@ -21,7 +21,7 @@
             <div class="content">
                 <div class="row justify-content-center mb-4">
                     <!-- Kolom gambar (urutan pertama, gambar di atas teks) -->
-                    <div class="col-lg-9 col-md-10 order-1 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-lg-9 col-md-10 order-1 mb-5" data-aos="fade-up" data-aos-delay="100">
                         <div class="img-wrap text-center text-md-left" data-aos="fade-up" data-aos-delay="100">
                             {{-- <div class="img">
                                 <img src="assets/img/img_h_3.jpg" alt="circle image" class="img-fluid">
@@ -50,7 +50,7 @@
                     </div>
 
                     <!-- Kolom teks (urutan kedua, di bawah gambar) -->
-                    <div class="col-lg-12 col-md-12 order-2" data-aos="fade-up">
+                    <div class="col-lg-12 col-md-12 order-2 mt-3" data-aos="fade-up">
                         <div class="px-3">
                             <h2 class="content-title text-start">
                                 Profil GKJW Jemaat Genteng
