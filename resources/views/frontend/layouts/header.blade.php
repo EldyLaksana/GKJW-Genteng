@@ -28,6 +28,15 @@
                 <li><a href="/warta-jemaat" class="{{ $judul === 'Warta Jemaat' ? 'active' : '' }}">Warta Jemaat</a>
                 </li>
                 <li><a href="/renungan" class="{{ $judul === 'Renungan' ? 'active' : '' }}">Renungan</a></li>
+                {{-- <li class="dropdown"><a href="#"
+                        class="{{ in_array($judul, ['Renungan Harian']) ? 'active' : '' }}"><span>Renungan</span>
+                        <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <ul>
+                        <li><a href="/renungan" class="{{ $judul === 'Renungan Harian' ? 'active' : '' }}">Renungan
+                                Harian</a></li>
+                        <li><a href="#" class="">Renungan Anak</a></li>
+                    </ul>
+                </li> --}}
                 <li><a href="/kabar-jemaat" class="{{ $judul === 'Kabar Jemaat' ? 'active' : '' }}">Kabar Jemaat</a>
                 </li>
                 <li><a href="/kontak" class="{{ $judul === 'Kontak' ? 'active' : '' }}">Kontak</a></li>
