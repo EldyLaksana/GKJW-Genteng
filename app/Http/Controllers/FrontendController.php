@@ -11,6 +11,7 @@ use App\Models\Majelis;
 use App\Models\Renungan;
 use App\Models\WartaJemaat;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -53,13 +54,15 @@ class FrontendController extends Controller
 
     public function warta()
     {
-        $warta = WartaJemaat::latest('id')->first();
+        $warta = WartaJemaat::latest()->first();
+        $wartaSebelumnya = WartaJemaat::where('id', '!=', $warta->id)->latest()->get();
 
         // return $warta;
         return view('frontend.warta', [
             'title' => 'Warta Jemaat - GKJW Jemaat Genteng',
             'judul' => 'Warta Jemaat',
             'warta' => $warta,
+            'wartaSebelumnya' => $wartaSebelumnya,
         ]);
     }
 
@@ -122,6 +125,8 @@ class FrontendController extends Controller
             $renungan->published_at = Carbon::parse($renungan->published_at);
         });
 
+        $metaDescription = Str::limit(strip_tags($renungan->renungan), 155);
+
         // Menggunakan slug sebagai bagian dari kunci cache unik bersama dengan IP pengguna
         $chaceKey = 'renungan_' . $renungan->slug . '_dilihat_' . request()->ip();
 
@@ -137,6 +142,7 @@ class FrontendController extends Controller
             'judul' => 'Renungan',
             'renungan' => $renungan,
             'renunganLain' => $renunganLain,
+            'metaDescription' => $metaDescription,
         ]);
     }
 
@@ -192,6 +198,8 @@ class FrontendController extends Controller
             $kabarJemaat->published_at = Carbon::parse($kabarJemaat->published_at);
         });
 
+        $metaDescription = Str::limit(strip_tags($kabarJemaat->isi), 155);
+
         // Menggunakan slug sebagai bagian dari kunci cache unik bersama dengan IP pengguna
         $chaceKey = 'kabar_jemaat_' . $kabarJemaat->slug . '_dilihat_' . request()->ip();
 
@@ -208,6 +216,7 @@ class FrontendController extends Controller
             'kabarJemaat' => $kabarJemaat,
             'kabarLain' => $kabarLain,
             'kategoris' => Kategori::all(),
+            'metaDescription' => $metaDescription,
         ]);
     }
 
