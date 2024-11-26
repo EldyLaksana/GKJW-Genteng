@@ -5,10 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
-    <meta name="description"
-        content="GKJW Jemaat Genteng adalah komunitas Kristen yang penuh kasih, berkomitmen untuk melayani Tuhan dan sesama melalui ibadah, pelayanan, dan pengajaran Alkitab. Bergabunglah dengan kami dalam pelayanan dan kegiatan rohani.">
+    {{-- <meta name="description"
+        content="GKJW Jemaat Genteng adalah komunitas Kristen yang penuh kasih, berkomitmen untuk melayani Tuhan dan sesama melalui ibadah, pelayanan, dan pengajaran Alkitab. Bergabunglah dengan kami dalam pelayanan dan kegiatan rohani."> --}}
+    <meta name="description" content="@yield('meta_description', 'GKJW Jemaat Genteng adalah komunitas Kristen yang melayani Tuhan.')">
     <meta name="keywords"
-        content="gereja, pelayanan gereja, ibadah, komunitas Kristen, pengajaran Alkitab, kebaktian, doa bersama, pelayanan rohani">
+        content="renungan Kristen, ibadah gereja, komunitas rohani, pelayanan gereja, pengajaran Alkitab, doa bersama, kebaktian gereja, pelayanan rohani, kegiatan gereja, kekristenan, gereja, GKJW, Greja Kristen Jawi Wetan">
+
 
     {{-- Favicons --}}
     <link href="{{ asset('assets/img/logo-gkjw.png') }}" rel="icon">
