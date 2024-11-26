@@ -2,6 +2,8 @@
 
 @section('title', $title)
 
+@section('meta_description', $metaDescription)
+
 @section('container')
     <!-- Page Title -->
     <div class="page-title light-background">
