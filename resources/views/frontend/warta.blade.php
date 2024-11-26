@@ -32,8 +32,23 @@
                         </div>
                     </div>
                 </div>
+
+                {{-- <div class="row">
+                    <h3 class="text-center mb-4 mt-4" data-aos="fade-up">Warta Jemaat Sebelumnya</h3>
+                    @foreach ($wartaSebelumnya->take(3) as $item)
+                        <div class="col-md-4
+                        mb-4" data-aos="fade-up">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="ratio ratio-16x9">
+                                        {!! $item->embed !!}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div> --}}
             </div>
         </div>
-
     </section><!-- /About 2 Section -->
 @endsection
