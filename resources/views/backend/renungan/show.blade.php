@@ -22,9 +22,8 @@
                     <img src="{{ asset('storage/' . $renungan->gambar) }}" alt="" class="img-fluid my-3">
 
                     @if ($renungan->sumber_gambar)
-                        <p style="font-style: italic; font-size: 14px">Sumber : <a href="{{ $renungan->sumber_gambar }}"
-                                target="_blank">
-                                {{ $renungan->sumber_gambar }}</a></p>
+                        <p style="font-style: italic; font-size: 14px">Sumber :
+                            {{ $renungan->sumber_gambar }}</p>
                     @endif
 
                     <p>{!! $renungan->renungan !!}</p>
