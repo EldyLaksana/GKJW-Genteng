@@ -1,9 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#34bf49">
     <title>@yield('title')</title>
     {{-- <meta name="description"
         content="GKJW Jemaat Genteng adalah komunitas Kristen yang penuh kasih, berkomitmen untuk melayani Tuhan dan sesama melalui ibadah, pelayanan, dan pengajaran Alkitab. Bergabunglah dengan kami dalam pelayanan dan kegiatan rohani."> --}}
