@@ -246,17 +246,39 @@
 
                         <div class="post-item">
                             @foreach ($renunganLain as $renungan)
-                                <h4><a href="/renungan/{{ $renungan->slug }}">{{ $renungan->judul }}</a></h4>
                                 <a href="/renungan/{{ $renungan->slug }}" class="thumb d-block">
                                     <img src="{{ asset($renungan->gambar ? 'storage/' . $renungan->gambar : 'assets/img/default.jpg') }}"
                                         alt="{{ $renungan->judul }}" class="img-fluid rounded">
                                 </a>
+                                <h4><a href="/renungan/{{ $renungan->slug }}">{{ $renungan->judul }}</a></h4>
                                 <time datetime="{{ $renungan->published_at->toIso8601String() }}">
                                     {{ $renungan->published_at->translatedFormat('d F Y') }}
                                 </time>
                             @endforeach
 
                         </div><!-- End recent post item-->
+
+                        {{-- <div class="post-item">
+                            @foreach ($renunganLain as $renungan)
+                                <div class="d-flex align-items-center mb-3">
+                                    <!-- Thumbnail -->
+                                    <a href="/renungan/{{ $renungan->slug }}" class="me-3">
+                                        <img src="{{ asset($renungan->gambar ? 'storage/' . $renungan->gambar : 'assets/img/default.jpg') }}"
+                                            alt="{{ $renungan->judul }}" class="img-fluid rounded"
+                                            style="width: auto; height: 80px; object-fit: contain;">
+                                    </a>
+                                    <!-- Content -->
+                                    <div>
+                                        <h4 class="mb-1"><a
+                                                href="/renungan/{{ $renungan->slug }}">{{ $renungan->judul }}</a>
+                                        </h4>
+                                        <time datetime="{{ $renungan->published_at->toIso8601String() }}">
+                                            {{ $renungan->published_at->translatedFormat('d F Y') }}
+                                        </time>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div> --}}
                     </div><!--/Recent Posts Widget -->
 
                     {{-- <div class="blog-author-widget widget-item">
