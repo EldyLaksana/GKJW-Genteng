@@ -217,6 +217,7 @@ class FrontendController extends Controller
             'kabarLain' => $kabarLain,
             'kategoris' => Kategori::all(),
             'metaDescription' => $metaDescription,
+            'carousel' => Carousel::all(),
         ]);
     }
 
