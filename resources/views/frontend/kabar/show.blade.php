@@ -34,7 +34,7 @@
                                 <img src="{{ asset($kabarJemaat->gambar ? 'storage/' . $kabarJemaat->gambar : 'assets/img/default.jpg') }}"
                                     alt="{{ $kabarJemaat->judul }}" class="img-fluid rounded">
                                 <p class="text-muted mt-2" style="font-size: 0.8em; padding-left: 30px;">
-                                    {{ $kabarJemaat->sumber_gambar ?? 'Dokumentasi' }}
+                                    sumber : {{ $kabarJemaat->sumber_gambar ?? 'Dokumentasi' }}
                                 </p>
                             </div>
 
@@ -65,15 +65,33 @@
                                 </div>
                             @endif
 
-                            <!-- Share Buttons -->
-                            <div class="share-buttons mt-4">
-                                <span>Bagikan :</span>
+                            {{-- <!-- Share Links Section -->
+                            <div class="blog-author-widget widget-item">
+                                <h3 class="widget-title">Bagikan</h3>
                                 <div class="social-links">
-
+                                    <!-- Facebook Share -->
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->fullUrl()) }}"
+                                        target="_blank" title="Bagikan ke Facebook">
+                                        <i class="bi bi-facebook"></i>
+                                    </a>
+                                    <!-- WhatsApp Share -->
+                                    <a href="https://wa.me/?text={{ urlencode($kabarJemaat->judul . ' - ' . request()->fullUrl()) }}"
+                                        target="_blank" title="Bagikan ke WhatsApp">
+                                        <i class="bi bi-whatsapp"></i>
+                                    </a>
+                                    <!-- Email Share -->
+                                    <a href="mailto:?subject={{ urlencode($kabarJemaat->judul) }}&body={{ urlencode(request()->fullUrl()) }}"
+                                        target="_blank" title="Bagikan via Email">
+                                        <i class="bi bi-envelope"></i>
+                                    </a>
+                                    <!-- Twitter Share -->
+                                    <a href="https://twitter.com/share?url={{ urlencode(request()->fullUrl()) }}&text={{ urlencode($kabarJemaat->judul) }}"
+                                        target="_blank" title="Bagikan ke Twitter">
+                                        <i class="bi bi-twitter"></i>
+                                    </a>
                                 </div>
+                            </div> --}}
 
-                            </div>
-                            <!-- End Share Buttons -->
 
                             <div class="meta-bottom">
                                 <i class="bi bi-folder"></i>
@@ -266,11 +284,11 @@
 
                         <div class="post-item">
                             @foreach ($kabarLain as $kabar)
-                                <h4><a href="/kabar-jemaat/{{ $kabar->slug }}">{{ $kabar->judul }}</a></h4>
                                 <a href="/kabar-jemaat/{{ $kabar->slug }}" class="thumb d-block">
                                     <img src="{{ asset($kabar->gambar ? 'storage/' . $kabar->gambar : 'assets/img/default.jpg') }}"
                                         alt="{{ $kabar->judul }}" class="img-fluid rounded">
                                 </a>
+                                <h4><a href="/kabar-jemaat/{{ $kabar->slug }}">{{ $kabar->judul }}</a></h4>
                                 <time datetime="{{ $kabar->published_at->toIso8601String() }}"
                                     style="margin-bottom: 10px;">
                                     {{ $kabar->published_at->translatedFormat('d F Y') }}
@@ -278,6 +296,27 @@
                             @endforeach
 
                         </div><!-- End recent post item-->
+
+                        {{-- <div class="post-item">
+                            @foreach ($kabarLain as $kabar)
+                                <div class="d-flex align-items-center mb-3">
+                                    <!-- Thumbnail -->
+                                    <a href="/kabar-jemaat/{{ $kabar->slug }}" class="me-3">
+                                        <img src="{{ asset($kabar->gambar ? 'storage/' . $kabar->gambar : 'assets/img/default.jpg') }}"
+                                            alt="{{ $kabar->judul }}" class="img-fluid rounded"
+                                            style="width: auto; height: 80px; object-fit: contain;">
+                                    </a>
+                                    <!-- Content -->
+                                    <div>
+                                        <h4 class="mb-1"><a
+                                                href="/kabar-jemaat/{{ $kabar->slug }}">{{ $kabar->judul }}</a></h4>
+                                        <time datetime="{{ $kabar->published_at->toIso8601String() }}">
+                                            {{ $kabar->published_at->translatedFormat('d F Y') }}
+                                        </time>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div> --}}
                     </div><!--/Recent Posts Widget -->
 
                     <!-- Tags Widget -->
@@ -294,16 +333,33 @@
 
                     </div><!--/Tags Widget -->
 
-                    {{-- <div class="blog-author-widget widget-item">
-                        <h3 class="widget-title">Bagikan</h3>
-                        <div class="social-links">
-                            <a href="https://facebook.com/sharer/sharer.php?u={{ urlencode(request()->fullUrl()) }}"
-                                target="_blank"><i class="bi bi-facebook"></i></a>
-                            <a href="https://wa.me/?text={{ urlencode(request()->fullUrl()) }}" target="_blank"><i
-                                    class="bi bi-whatsapp"></i></a>
-                            <a href="mailto:?subject={{ urlencode($kabarJemaat->judul) }}&body={{ urlencode(request()->fullUrl()) }}"
-                                target="_blank"><i class="bi bi-envelope"></i></a>
+                    {{-- <div class="recent-posts-widget widget-item">
+                        <h3 class="widget-title">Warta Jemaat</h3>
+                        <div class="d-flex flex-column align-items-center">
+
+                            <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    @foreach ($carousel as $index => $item)
+                                        <div class="carousel-item {{ $index == 0 ? 'active' : '' }}"
+                                            data-bs-interval="5000">
+                                            <img src="{{ asset('storage/' . $item->carousel) }}"
+                                                class="d-block w-100 rounded" alt="carousel">
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carousel"
+                                    data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carousel"
+                                    data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
                         </div>
+
 
                     </div><!--/Blog Author Widget --> --}}
 
