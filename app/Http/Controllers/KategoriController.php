@@ -40,12 +40,12 @@ class KategoriController extends Controller
     {
 
         // return $request;
-        $validateDate = $request->validate([
+        $validateData = $request->validate([
             'kategori' => 'required|unique:kategoris',
             'slug' => 'required',
         ]);
 
-        Kategori::create($validateDate);
+        Kategori::create($validateData);
         return redirect()->route('kategori.index')->with('success', 'Kategori berhasil ditambahkan');
     }
 
@@ -76,12 +76,12 @@ class KategoriController extends Controller
     public function update(Request $request, string $id)
     {
         // return $request;
-        $validateDate = $request->validate([
+        $validateData = $request->validate([
             'kategori' => 'required|unique:kategoris',
             'slug' => 'required',
         ]);
 
-        Kategori::where('id', $id)->update($validateDate);
+        Kategori::where('id', $id)->update($validateData);
         return redirect()->route('kategori.index')->with('success', 'Kategori berhasil diubah');
     }
 
