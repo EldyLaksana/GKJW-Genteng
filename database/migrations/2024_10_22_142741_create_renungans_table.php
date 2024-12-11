@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('renungan');
             $table->text('excerpt');
             $table->string('sumber')->nullable();
-            $table->string('status_publikasi')->default('published');
+            $table->string('status_publikasi')->default('sekarang');
             $table->timestamp('published_at')->nullable();
             $table->integer('view_count')->default(0);
             $table->timestamps();
