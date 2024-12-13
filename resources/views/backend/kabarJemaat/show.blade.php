@@ -16,7 +16,7 @@
                             Edit</a>
                     @endif
                     @if (auth()->user()->isAdmin == 1)
-                        <form action="#" method="POST" class="d-inline">
+                        <form action="/dashboard/kabar-jemaat/{{ $kabarJemaat->slug }}" method="POST" class="d-inline">
                             @method('delete')
                             @csrf
                             <button class="btn btn-danger" onclick="return confirm('Apakah anda yakin?')"><i
