@@ -121,6 +121,7 @@ class KabarJemaatController extends Controller
             'gambar' => 'image|file|mimes:jpg,jpeg,png|max:5000',
             'sumber_gambar' => 'nullable',
             'isi' => 'required',
+            'embed' => 'nullable',
             'sumber' => 'nullable',
             'status_publikasi' => 'nullable',
             'published_at' => 'nullable|date',
