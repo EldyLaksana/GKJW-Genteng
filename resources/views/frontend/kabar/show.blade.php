@@ -46,7 +46,7 @@
                                     <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
                                             href="#">{{ $kabarJemaat->user->name ?? 'Admin' }}</a></li>
                                     <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
-                                            href="blog-details.html"><time
+                                            href="#"><time
                                                 datetime="">{{ $kabarJemaat->published_at->translatedFormat('d F Y') }}</time></a>
                                     </li>
                                     <li class="d-flex align-items-center"><i class="bi bi-tag"></i> <a
