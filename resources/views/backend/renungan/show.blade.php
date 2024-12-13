@@ -12,7 +12,7 @@
                     <a href="/dashboard/renungan/{{ $renungan->slug }}/edit" class="btn btn-warning" style="color: white"><i
                             class="fa-solid fa-pen"></i>
                         Edit</a>
-                    <form action="#" method="POST" class="d-inline">
+                    <form action="/dashboard/renungan/{{ $renungan->slug }}" method="POST" class="d-inline">
                         @method('delete')
                         @csrf
                         <button class="btn btn-danger" onclick="return confirm('Apakah anda yakin?')"><i
