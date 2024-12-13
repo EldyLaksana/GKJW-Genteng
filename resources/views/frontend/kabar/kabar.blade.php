@@ -75,7 +75,7 @@
                     </div><!-- End post list item -->
                 @endforeach
 
-                <div class="d-flex justify-content-center blog-pagination">
+                <div class="d-flex justify-content-center pagination">
                     {{ $kabarJemaats->links() }}
                 </div>
 
