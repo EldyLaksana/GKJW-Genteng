@@ -11,7 +11,7 @@
                 <ol>
                     <li><a href="/">Beranda</a></li>
                     <li><a href="/kabar-jemaat">Kabar Jemaat</a></li>
-                    <li class="current">Kategori {{ $kategori->kategori }}</li>
+                    <li class="current">Kategori - {{ $kategori->kategori }}</li>
                 </ol>
             </nav>
         </div>
