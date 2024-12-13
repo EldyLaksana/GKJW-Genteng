@@ -86,8 +86,7 @@
                     @endif
                     <div class="col-lg-6 mb-3">
                         <label for="sumber" class="form-label">Sumber :</label>
-                        <input type="text" class="form-control" placeholder="" name="sumber" id="sumber"
-                            value="{{ old('sumber', $kabarJemaat->sumber) }}">
+                        <textarea name="sumber" id="sumber" rows="1" class="form-control">{{ old('sumber', $kabarJemaat->sumber) }}</textarea>
                     </div>
                     <div class="col-lg-6 mb-3">
                         <label for="status_publikasi" class="form-label">Status Publikasi :</label>
