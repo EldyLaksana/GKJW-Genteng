@@ -33,21 +33,23 @@
                     </div>
                 </div>
 
-                {{-- <div class="row">
+                <div class="row mt-5">
                     <h3 class="text-center mb-4 mt-4" data-aos="fade-up">Warta Jemaat Sebelumnya</h3>
-                    @foreach ($wartaSebelumnya->take(3) as $item)
-                        <div class="col-md-4
-                        mb-4" data-aos="fade-up">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="ratio ratio-16x9">
-                                        {!! $item->embed !!}
+                    <div class="d-flex flex-wrap flex-md-row flex-column justify-content-center" data-aos="fade-up">
+                        @foreach ($wartaSebelumnya as $item)
+                            <div class="col-lg-4 col-md-6 col-12 mb-4" data-aos="fade-up">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="ratio ratio-16x9">
+                                            {!! $item->embed !!}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
-                </div> --}}
+                        @endforeach
+                    </div>
+                </div>
+
             </div>
         </div>
     </section><!-- /About 2 Section -->
