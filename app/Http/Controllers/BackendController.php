@@ -19,11 +19,12 @@ class BackendController extends Controller
                 return $query->where('user_id', $user->id);
             })
             ->latest()
+            ->take(5)
             ->get();
 
         // Hanya kirim data Renungan jika isAdmin bernilai 1
         $renungans = $user->isAdmin == 1
-            ? Renungan::whereIn('status_publikasi', ['draf', 'jadwalkan'])->latest()->get()
+            ? Renungan::whereIn('status_publikasi', ['draf', 'jadwalkan'])->latest()->take(5)->get()
             : collect(); // Mengirim koleksi kosong jika bukan admin
 
 
