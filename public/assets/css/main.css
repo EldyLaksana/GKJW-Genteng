@@ -1482,6 +1482,12 @@ section,
   bottom: 0;
 }
 
+@media (min-width: 992px) {
+  .portfolio .pagination-container {
+      display: none !important; /* Sembunyikan paginasi di layar besar */
+  }
+}
+
 /*--------------------------------------------------------------
 # Portfolio Details Section
 --------------------------------------------------------------*/
