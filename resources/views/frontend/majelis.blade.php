@@ -22,7 +22,7 @@
 
             <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
 
-                <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+                <div id="majelis-container" class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
                     @foreach ($majelis as $item)
                         <div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-app">
                             <img src="{{ $item->foto ? asset('storage/' . $item->foto) : asset('assets/img/pastor.png') }}"
@@ -40,9 +40,35 @@
                     @endforeach
                 </div><!-- End Portfolio Container -->
 
+                <!-- Tampilkan paginasi jika menggunakan paginasi -->
+                @if ($majelis instanceof \Illuminate\Pagination\AbstractPaginator)
+                    <div class="pagination-container d-lg-none mt-4 d-flex justify-content-center">
+                        {{ $majelis->links() }}
+                    </div>
+                @endif
+
             </div>
 
         </div>
 
     </section><!-- /Portfolio Section -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Deteksi apakah layar besar atau kecil
+            const isLargeScreen = window.innerWidth >= 992;
+
+            // Ambil URL saat ini
+            const url = new URL(window.location.href);
+
+            // Cek apakah parameter 'screen' sudah ada
+            if (!url.searchParams.has('screen')) {
+                // Tambahkan parameter 'screen'
+                url.searchParams.set('screen', isLargeScreen ? 'large' : 'small');
+
+                // Arahkan ke URL baru
+                window.location.href = url.toString();
+            }
+        });
+    </script>
 @endsection
