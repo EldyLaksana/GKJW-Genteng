@@ -55,7 +55,7 @@ class FrontendController extends Controller
     public function warta()
     {
         $warta = WartaJemaat::latest()->first();
-        $wartaSebelumnya = WartaJemaat::where('id', '!=', $warta->id)->latest()->get();
+        $wartaSebelumnya = WartaJemaat::where('id', '!=', $warta->id)->latest()->take(3)->get();
 
         // return $warta;
         return view('frontend.warta', [
@@ -261,12 +261,23 @@ class FrontendController extends Controller
         ]);
     }
 
-    public function majelis()
+    public function majelis(Request $request)
     {
+        // Ambil parameter 'screen' dari query string
+        $screen = $request->query('screen', 'large'); //Default: Large
+
+        // Tampilkan  data sesuai ukuran layar
+        if ($screen === 'large') {
+            $majelis = Majelis::all();
+        } else {
+            $majelis = Majelis::paginate(4);
+        }
+
+
         return view('frontend.majelis', [
             'judul' => 'Majelis Jemaat',
             'title' => 'Majelis Jemaat - GKJW Jemaat Genteng',
-            'majelis' => Majelis::all(),
+            'majelis' => $majelis,
         ]);
     }
 
