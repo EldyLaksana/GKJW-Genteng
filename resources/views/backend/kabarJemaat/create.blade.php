@@ -71,10 +71,10 @@
                     </div>
                     @if (Auth::user()->isAdmin === 1)
                         <div class="mb-3 col-lg-6">
-                            <label for="embed" class="form-label">Embed Video :</label>
+                            <label for="embed" class="form-label">Embed :</label>
                             <input type="text" name="embed" id="embed"
                                 class="form-control @error('embed') is-invalid @enderror" value="{{ old('embed') }}">
-                            <small class="form-text text-muted">Jika ingin menambahkan video dapat diisi embed </small>
+                            <small class="form-text text-muted">Tambahkan embed disini </small>
                         </div>
                     @endif
                     <div class="col-lg-6 mb-3">
