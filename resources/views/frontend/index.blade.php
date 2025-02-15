@@ -99,7 +99,7 @@
 
             <div class="row gy-4" id="renunganContainer">
                 @foreach ($renungans as $index => $renungan)
-                    <div class="col-md-6 col-lg-4">
+                    <div class="col-md-6 col-lg-4 renungan-item" data-index="{{ $index }}">
                         <div class="post-entry" data-aos="fade-up" data-aos-delay="100">
                             <a href="renungan/{{ $renungan->slug }}" class="thumb d-block">
                                 <img src="{{ asset($renungan->gambar ? 'storage/' . $renungan->gambar : 'assets/img/default.jpg') }}"
@@ -255,6 +255,33 @@
     // Periksa kembali ketika ukuran layar berubah
     window.addEventListener('resize', displayKabarJemaat);
 
+
+    function displayKabarJemaat() {
+        const screenWidth = window.innerWidth; // Ukuran layar saat ini
+        const items = document.querySelectorAll('.kabarJemaat-item');
+
+        let itemsToShow = 1; // Default menampilkan 1 item untuk layar di bawah 768px
+        if (screenWidth >= 768 && screenWidth < 1024) {
+            itemsToShow = 2; // Menampilkan 2 item untuk layar antara 768px dan 1024px
+        } else if (screenWidth >= 1024) {
+            itemsToShow = 3; // Menampilkan 3 item untuk layar di atas 1024px
+        }
+
+        // Menampilkan item sesuai dengan jumlah yang ditentukan
+        items.forEach((item, index) => {
+            if (index < itemsToShow) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    // Tampilkan data sesuai ukuran layar saat halaman pertama kali dimuat
+    displayKabarJemaat();
+
+    // Periksa kembali ketika ukuran layar berubah
+    window.addEventListener('resize', displayKabarJemaat);
 
     function displayRenungan() {
         const screenWidth = window.innerWidth;
