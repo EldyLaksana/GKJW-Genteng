@@ -12,7 +12,8 @@
                     <a href="#"><span class="bi bi-whatsapp"></span></a>
                 </li>
                 <li>
-                    <a href="#"><span class="bi bi-instagram"></span></a>
+                    <a href="https://www.instagram.com/gkjwgenteng/" target="_blank"><span
+                            class="bi bi-instagram"></span></a>
                 </li>
                 {{-- <li>
                     <a href="#"><span class="bi bi-google"></span></a>
