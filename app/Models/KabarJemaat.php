@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\CarouselImage;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class KabarJemaat extends Model
 {
@@ -19,6 +20,14 @@ class KabarJemaat extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function carouselImages()
+    {
+        return $this->hasMany(CarouselImage::class);
+    }
+
+
+
 
     public function getRouteKeyName()
     {
