@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Carousel;
-use App\Models\Carousel2;
-use App\Models\JadwalIbadah;
-use App\Models\KabarJemaat;
-use App\Models\Kategori;
-use App\Models\Majelis;
-use App\Models\Renungan;
-use App\Models\WartaJemaat;
 use Carbon\Carbon;
+use App\Models\Majelis;
+use App\Models\Carousel;
+use App\Models\Kategori;
+use App\Models\Renungan;
+use App\Models\Carousel2;
+use App\Models\KabarJemaat;
+use App\Models\WartaJemaat;
 use Illuminate\Support\Str;
+use App\Models\JadwalIbadah;
 use Illuminate\Http\Request;
+use App\Models\CarouselImage;
 use Illuminate\Support\Facades\Cache;
 
 class FrontendController extends Controller
@@ -210,6 +211,7 @@ class FrontendController extends Controller
             Cache::put($chaceKey, true, now()->addMinutes(30));
         }
 
+
         return view('frontend.kabar.show', [
             'title' => $kabarJemaat->judul . ' - GKJW Genteng',
             'judul' => 'Kabar Jemaat',
@@ -217,6 +219,7 @@ class FrontendController extends Controller
             'kabarLain' => $kabarLain,
             'kategoris' => Kategori::all(),
             'metaDescription' => $metaDescription,
+            'carouselImages' => CarouselImage::where('kabar_jemaat_id', $kabarJemaat->id)->get(),
         ]);
     }
 
