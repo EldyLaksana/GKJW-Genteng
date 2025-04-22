@@ -65,6 +65,29 @@
                                 </div>
                             @endif
 
+                            @if ($carouselImages->count() > 0)
+                                <div id="carouselExample" class="carousel slide my-4" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        @foreach ($carouselImages as $index => $image)
+                                            <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                                <img src="{{ asset('storage/' . $image->gambar) }}" class="d-block w-100"
+                                                    alt="Gambar Carousel">
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                                        data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                                        data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                            @endif
+
                             {{-- <!-- Share Links Section -->
                             <div class="blog-author-widget widget-item">
                                 <h3 class="widget-title">Bagikan</h3>
