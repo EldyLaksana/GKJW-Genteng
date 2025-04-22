@@ -77,6 +77,21 @@
                             <small class="form-text text-muted">Tambahkan embed disini </small>
                         </div>
                     @endif
+                    <div class="mb-3 col-lg-6">
+                        <label class="form-label">Gambar Carousel :</label>
+                        <div id="carousel-images-container">
+                            <div class="carousel-image-input mb-2 d-flex flex-column">
+                                <img src="" class="img-preview img-fluid mb-3 col-sm-6" />
+                                <div class="d-flex align-items-center">
+                                    <input type="file" name="carousel_gambar[]" class="form-control"
+                                        onchange="previewImage(this)">
+                                    <button type="button" class="btn btn-danger ms-2"
+                                        onclick="removeImageInput(this)">Hapus</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary mt-2" onclick="addImageInput()">Tambah Gambar</button>
+                    </div>
                     <div class="col-lg-6 mb-3">
                         <label for="sumber" class="form-label">Sumber :</label>
                         {{-- <input type="text" class="form-control" placeholder="" name="sumber" id="sumber"
@@ -166,5 +181,38 @@
                 }
             });
         });
+    </script>
+
+    <script>
+        function addImageInput() {
+            const container = document.getElementById('carousel-images-container');
+            const div = document.createElement('div');
+            div.classList.add('carousel-image-input', 'mb-2', 'd-flex', 'flex-column');
+            div.innerHTML = `
+            <img src="" class="img-preview mb-2" style="max-width: 100px; display: none;" />
+            <div class="d-flex align-items-center">
+                <input type="file" name="carousel_gambar[]" class="form-control" onchange="previewImage(this)">
+                <button type="button" class="btn btn-danger ms-2" onclick="removeImageInput(this)">Hapus</button>
+            </div>
+        `;
+            container.appendChild(div);
+        }
+
+        function removeImageInput(button) {
+            button.closest('.carousel-image-input').remove();
+        }
+
+        function previewImage(input) {
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = input.closest('.carousel-image-input').querySelector('.img-preview');
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        }
     </script>
 @endsection
