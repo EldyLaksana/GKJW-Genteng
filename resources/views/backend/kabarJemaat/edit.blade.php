@@ -84,6 +84,23 @@
                             <small class="form-text text-muted">Tambahkan embed disini </small>
                         </div>
                     @endif
+                    <!-- Input Gambar Carousel -->
+                    <div class="mb-3 col-lg-6">
+                        <label class="form-label">Gambar Carousel :</label>
+                        <div id="carousel-images-container">
+                            @foreach ($carouselImages as $carouselImage)
+                                <div class="carousel-image-input mb-2 d-flex align-items-center">
+                                    <img src="{{ asset('storage/' . $carouselImage->gambar) }}" width="100"
+                                        class="img-fluid mb-3 col-sm-6">
+                                    <input type="hidden" name="existing_carousel_gambar[]"
+                                        value="{{ $carouselImage->id }}">
+                                    <button type="button" class="btn btn-danger ms-2"
+                                        onclick="removeExistingImage(this, {{ $carouselImage->id }})">Hapus</button>
+                                </div>
+                            @endforeach
+                        </div>
+                        <button type="button" class="btn btn-primary mt-2" onclick="addImageInput()">Tambah Gambar</button>
+                    </div>
                     <div class="col-lg-6 mb-3">
                         <label for="sumber" class="form-label">Sumber :</label>
                         <textarea name="sumber" id="sumber" rows="1" class="form-control">{{ old('sumber', $kabarJemaat->sumber) }}</textarea>
@@ -176,5 +193,31 @@
                 }
             });
         });
+    </script>
+
+    <script>
+        function addImageInput() {
+            const container = document.getElementById('carousel-images-container');
+            const div = document.createElement('div');
+            div.classList.add('carousel-image-input', 'mb-2', 'd-flex', 'align-items-center');
+            div.innerHTML = `
+            <input type="file" name="carousel_gambar[]" class="form-control">
+            <button type="button" class="btn btn-danger ms-2" onclick="removeImageInput(this)">Hapus</button>
+        `;
+            container.appendChild(div);
+        }
+
+        function removeImageInput(button) {
+            button.parentElement.remove();
+        }
+
+        function removeExistingImage(button, imageId) {
+            button.parentElement.remove();
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'deleted_carousel_images[]';
+            input.value = imageId;
+            document.getElementById('carousel-images-container').appendChild(input);
+        }
     </script>
 @endsection
